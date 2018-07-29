@@ -1,4 +1,9 @@
 <p>Works</p>
+<div *ngFor="let item of customers">
+  <ul>
+    <li>{{item.username}}</li>
+  </ul>
+</div>
 <!--<mat-form-field>-->
   <!--<input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">-->
 <!--</mat-form-field>-->

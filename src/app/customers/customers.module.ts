@@ -9,9 +9,11 @@ import {SharedModule} from '../shared.module';
   imports: [
     CommonModule,
     CustomersRoutingModule,
-    SharedModule
+    SharedModule.forRoot()
 
   ],
-  declarations: [CustomersListComponent]
+  declarations: [CustomersListComponent],
 })
-export class CustomersModule { }
+export class CustomersModule {
+
+}
