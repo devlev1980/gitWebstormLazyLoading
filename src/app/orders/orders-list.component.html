@@ -1,3 +1,7 @@
 <p>
   orders-list works!
 </p>
+<ul *ngFor="let item of albums">
+  <li>{{item.name}}</li>
+  <li><img [src]="item.image[0]['#text']"> {{item.image[0]['#text']}}</li>
+</ul>
