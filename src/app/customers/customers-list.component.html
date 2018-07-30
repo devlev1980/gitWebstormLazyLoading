@@ -1,39 +1,42 @@
-<p>Works</p>
-<!--<div *ngFor="let item of customers">-->
-  <!--<ul>-->
-    <!--<li>{{item.username}}</li>-->
-  <!--</ul>-->
-<!--</div>-->
-<!--<mat-form-field>-->
-  <!--<input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">-->
-<!--</mat-form-field>-->
 
-<mat-table  #table [dataSource]="dataSource" class="mat-elevation-z8">
+<div>
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+  </mat-form-field>
+</div>
 
-  <!-- Position Column -->
-  <ng-container matColumnDef="position">
-    <th mat-header-cell *matHeaderCellDef> No. </th>
-    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+
+<mat-table  #table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+  <!-- name Column -->
+  <ng-container matColumnDef="name">
+    <mat-header-cell  *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+    <mat-cell  *matCellDef="let customer"> {{customer.name}} </mat-cell>
   </ng-container>
 
-  <!--&lt;!&ndash; Name Column &ndash;&gt;-->
-  <!--<ng-container matColumnDef="name">-->
-    <!--<th mat-header-cell *matHeaderCellDef> Name </th>-->
-    <!--<td mat-cell *matCellDef="let element"> {{element.name}} </td>-->
-  <!--</ng-container>-->
+  <!-- username Column -->
+  <ng-container matColumnDef="username">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Username </mat-header-cell>
+    <mat-cell *matCellDef="let customer"> {{customer.username}} </mat-cell>
+  </ng-container>
 
-  <!--&lt;!&ndash; Weight Column &ndash;&gt;-->
-  <!--<ng-container matColumnDef="weight">-->
-    <!--<th mat-header-cell *matHeaderCellDef> Weight </th>-->
-    <!--<td mat-cell *matCellDef="let element"> {{element.weight}} </td>-->
-  <!--</ng-container>-->
+  <!-- website Column -->
+  <ng-container matColumnDef="website">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Website </mat-header-cell>
+    <mat-cell *matCellDef="let customer"> {{customer.website}} </mat-cell>
+  </ng-container>
 
-  <!--&lt;!&ndash; Symbol Column &ndash;&gt;-->
-  <!--<ng-container matColumnDef="symbol">-->
-    <!--<th mat-header-cell *matHeaderCellDef> Symbol </th>-->
-    <!--<td mat-cell *matCellDef="let element"> {{element.symbol}} </td>-->
-  <!--</ng-container>-->
+   <!--phone Column-->
+  <ng-container matColumnDef="phone">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Phone </mat-header-cell>
+    <mat-cell *matCellDef="let customer"> {{customer.phone}} </mat-cell>
+  </ng-container>
+  <!--company Column-->
+  <ng-container matColumnDef="company">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Company Name </mat-header-cell>
+    <mat-cell *matCellDef="let customer"> {{customer.company.name}} </mat-cell>
+  </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  <mat-header-row  *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row  *matRowDef="let row; columns: displayedColumns;"></mat-row>
 </mat-table>
