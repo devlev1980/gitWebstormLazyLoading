@@ -59,6 +59,7 @@ export class ApiProviderService {
       }
     }
     const url = environment.serviceBaseUrl + '/' + path;
+    // const lastFmUrl = environment.lastFmURL;
 
     switch (type) {
       case ReqType.get:

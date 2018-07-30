@@ -17,11 +17,12 @@ export class CustomersListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.customerService.getCustomers().subscribe(data => {
-      this.customers = data;
+    this.customers = this.customerService.customers;
+    // this.customerService.getCustomers().subscribe(data => {
+      // this.customers = data;
       this.dataSource = new MatTableDataSource(this.customers);
       this.dataSource.sort = this.sort;
-    });
+    // });
   }
 
   applyFilter(filterValue: string){

@@ -5,6 +5,7 @@
 
 export const environment = {
   production: false,
-  serviceBaseUrl: 'https://jsonplaceholder.typicode.com'
+  serviceBaseUrl: 'https://jsonplaceholder.typicode.com',
+  // lastFmURL: `http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=cher&api_key='${lastFMAPI.APIkey}'&format=json`
 
 };
