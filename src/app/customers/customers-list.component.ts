@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {CustomerService} from '../services/customer.service';
 import {Customer} from '../models/customer';
+import {MatTableDataSource} from '@angular/material';
 
 @Component({
   selector: 'app-customers-list',
@@ -9,6 +10,8 @@ import {Customer} from '../models/customer';
 })
 export class CustomersListComponent implements OnInit {
 customers: Customer[];
+ dataSource;
+  displayedColumns = ['Name', 'Username', 'Email'];
   constructor(private customerService: CustomerService) {
   }
 
@@ -16,6 +19,8 @@ customers: Customer[];
     this.customerService.getCustomers().subscribe(data => {
       this.customers = data;
     });
+
+    this.dataSource = new MatTableDataSource<Customer>(this.customers);
   }
 
 }
