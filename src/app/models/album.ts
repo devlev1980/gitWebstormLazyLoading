@@ -1,14 +1,21 @@
 export interface AlbumByArtist {
-  name: string;
-  playcount: number;
-  artist: {
+  topalbums: {
+    moid: string;
     name: string;
+    playcount: number;
     url: string;
-  };
-  url: string;
-  image: {
-    url: string;
-    size: string;
+    album: [{
+      artist: {
+        name: string;
+        mbid: string;
+        url: string;
+      };
+      image: [{
+        url: string;
+        size: string;
+      }],
 
+    }]
   };
+
 }
