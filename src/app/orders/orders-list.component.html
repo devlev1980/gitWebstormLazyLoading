@@ -1,19 +1,11 @@
 <!--<p>-->
   <!--orders-list works!-->
 <!--</p>-->
-
 <!--<ul *ngFor="let item of albums">-->
-  <!--<li>{{item|json}}</li>-->
+  <!--<li>{{item.name}}</li>-->
+  <!--<li><img [src]="item.image[0]['#text']"> {{item.image[0]['#text']}}</li>-->
+  <!--<li><a [href]="item.url"></a>{{item.url}}</li>-->
 <!--</ul>-->
-
-
-
-<!--<div>-->
-  <!--<mat-form-field>-->
-    <!--<input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">-->
-  <!--</mat-form-field>-->
-<!--</div>-->
-
 
 <mat-table  #table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
@@ -25,33 +17,22 @@
 
   <!-- name Column -->
   <ng-container matColumnDef="name">
-    <mat-header-cell  *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
-    <mat-cell  *matCellDef="let album"> {{album.name}} </mat-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Album Name </mat-header-cell>
+    <mat-cell *matCellDef="let album"> {{album.name}} </mat-cell>
   </ng-container>
 
-   username Column
+  <!-- playcount Column -->
   <ng-container matColumnDef="playcount">
-    <mat-header-cell *matHeaderCellDef mat-sort-header> Playcount </mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Play Count </mat-header-cell>
     <mat-cell *matCellDef="let album"> {{album.playcount}} </mat-cell>
   </ng-container>
 
-   website Column
-  <ng-container matColumnDef="image">
-    <mat-header-cell *matHeaderCellDef mat-sort-header> Image </mat-header-cell>
-    <mat-cell *matCellDef="let album"><img [src]="albumArtwork" alt="">  </mat-cell>
+  <!--url Column-->
+  <ng-container matColumnDef="url">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Link on Last-FM </mat-header-cell>
+    <mat-cell *matCellDef="let album"> {{album.url}} </mat-cell>
   </ng-container>
-  <!--"'data:image/jpg;base64,'+userPicture" alt="picture"-->
 
-  <!--phone Column-->
-  <!--<ng-container matColumnDef="phone">-->
-    <!--<mat-header-cell *matHeaderCellDef mat-sort-header> Phone </mat-header-cell>-->
-    <!--<mat-cell *matCellDef="let customer"> {{customer.phone}} </mat-cell>-->
-  <!--</ng-container>-->
-  <!--company Column-->
-  <!--<ng-container matColumnDef="company">-->
-    <!--<mat-header-cell *matHeaderCellDef mat-sort-header> Company Name </mat-header-cell>-->
-    <!--<mat-cell *matCellDef="let customer"> {{customer.company.name}} </mat-cell>-->
-  <!--</ng-container>-->
 
   <mat-header-row  *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row  *matRowDef="let row; columns: displayedColumns;"></mat-row>

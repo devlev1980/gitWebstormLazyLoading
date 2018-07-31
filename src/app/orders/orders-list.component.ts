@@ -35,7 +35,7 @@ export class OrdersListComponent implements OnInit {
       this.paginator.length = this.albums.length;
       this.dataSource = new MatTableDataSource(this.albums);
       this.pageSize = this.paginator.pageSize;
-      // this.pageSize = Math.max(5, Math.floor(height / 49 /*height of row*/ /` pageStep) * pageStep);
+      // this.pageSize = Math.max(5, Math.floor(height / 49 /*height of row*/ / pageStep) * pageStep);
 
       // console.log(album.topalbums.album.map(image=> image.image[0]['#text']));
       // this.artWorks = album.topalbums.album.map(image => image.image['#text']);
