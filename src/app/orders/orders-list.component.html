@@ -1,11 +1,14 @@
-<!--<p>-->
-  <!--orders-list works!-->
-<!--</p>-->
-<!--<ul *ngFor="let item of albums">-->
-  <!--<li>{{item.name}}</li>-->
-  <!--<li><img [src]="item.image[0]['#text']"> {{item.image[0]['#text']}}</li>-->
-  <!--<li><a [href]="item.url"></a>{{item.url}}</li>-->
-<!--</ul>-->
+<div class="clr-row">
+  <div class="clr-col-12 clr-offset-5">
+    <mat-form-field class="example-full-width" >
+      <input matInput placeholder="Artist" [(ngModel)]="artist">
+    </mat-form-field>
+    <button type="button" class="btn btn-primary btn-sm" (click)="getData(artist)">Search
+    </button>
+      <!--<button class="" (click)="getData(artist)">Search</button>-->
+  </div>
+
+</div>
 
 <mat-table  #table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 

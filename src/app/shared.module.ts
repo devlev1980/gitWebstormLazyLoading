@@ -2,9 +2,9 @@ import {ModuleWithProviders, NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {MaterialModule} from './material.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpModule} from '@angular/http';
 import {ApiProviderService} from './services/api-provider.service';
 import {CustomerService} from './services/customer.service';
+import {ClarityModule} from '@clr/angular';
 
 @NgModule({
   imports: [
@@ -12,11 +12,15 @@ import {CustomerService} from './services/customer.service';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
+    ClarityModule
+
   ],
   exports: [
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
+    ClarityModule
+
   ],
   declarations: []
 })
