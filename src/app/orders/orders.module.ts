@@ -5,7 +5,6 @@ import { OrdersRoutingModule } from './orders-routing.module';
 import {OrdersListComponent} from './orders-list.component';
 import {LastFmService} from '../services/last-fm.service';
 import {SharedModule} from '../shared.module';
-import { Bas64ImgPipe } from './bas64-img.pipe';
 
 @NgModule({
   imports: [
@@ -14,6 +13,6 @@ import { Bas64ImgPipe } from './bas64-img.pipe';
     SharedModule.forRoot()
   ],
   providers: [LastFmService],
-  declarations: [OrdersListComponent, Bas64ImgPipe]
+  declarations: [OrdersListComponent]
 })
 export class OrdersModule { }

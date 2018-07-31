@@ -17,6 +17,12 @@
 
 <mat-table  #table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
+  <!-- artwork Column -->
+  <ng-container matColumnDef="artwork">
+    <mat-header-cell  *matHeaderCellDef mat-sort-header> Artwork </mat-header-cell>
+    <mat-cell  *matCellDef="let album"><img [src]="album.image[0]['#text']"> </mat-cell>
+  </ng-container>
+
   <!-- name Column -->
   <ng-container matColumnDef="name">
     <mat-header-cell  *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
@@ -49,7 +55,14 @@
 
   <mat-header-row  *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row  *matRowDef="let row; columns: displayedColumns;"></mat-row>
-</mat-table>
 
+
+</mat-table>
+<mat-paginator [length]="length"
+               [pageSize]="pageSize"
+               [pageSizeOptions]="pageSizeOptions"
+               (page)="pageEvent = $event">
+
+</mat-paginator>
 
 
