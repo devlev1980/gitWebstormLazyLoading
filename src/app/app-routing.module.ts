@@ -7,6 +7,12 @@ const routes: Routes = [
   },
   {
     path: 'orders', loadChildren: 'app/orders/orders.module#OrdersModule'
+  },
+  {
+    path: 'signup', loadChildren: 'app/signup/signup.module#SignupModule'
+  },
+  {
+    path: 'login', loadChildren: 'app/login/login.module#LoginModule'
   }
 ];
 
