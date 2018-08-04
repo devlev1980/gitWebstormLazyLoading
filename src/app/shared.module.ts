@@ -12,7 +12,7 @@ import {ClarityModule} from '@clr/angular';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    ClarityModule
+    ClarityModule,
 
   ],
   exports: [
@@ -30,7 +30,7 @@ export class SharedModule {
       ngModule: SharedModule,
       providers: [
         ApiProviderService,
-        CustomerService
+        CustomerService,
       ]
     };
   }

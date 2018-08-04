@@ -7,17 +7,25 @@
     <!--...-->
   <!--</div>-->
   <div class="header-nav">
+    <span class=" nav-link nav-text" *ngIf="afAuth.user|async as user">{{user.displayName}}</span>
     <a routerLink="/customers" class="nav-link nav-text">Customers</a>
     <a routerLink="/orders" class="nav-link nav-text">Search Artist</a>
-    <a routerLink="/signup" class="nav-link nav-text">Sign Up</a>
-    <a routerLink="/login" class="nav-link nav-text">Login</a>
+
   </div>
-  <div class="header-actions">
-    <!--<a href="javascript://" class="nav-link nav-icon">-->
-      <!--<clr-icon shape="cog"></clr-icon>-->
-    <!--</a>-->
+  <div class="header-actions" *ngIf="afAuth.user|async as user;else logIn">
+    <a  class="nav-link nav-text" routerLink="/login" (click)="logOutFromGoogle()">Logout</a>
+      <a  class="nav-link nav-text" routerLink="/signup">Signup</a>
+    <!--<a  class="nav-link nav-text" (click)="onSignUp">Sign Up</a>-->
   </div>
+  <ng-template #logIn>
+    <div class="header-actions" >
+      <a  class="nav-link nav-text" routerLink="/login" >Login</a>
+      <a  class="nav-link nav-text" routerLink="/signup">Signup</a>
+      <!--<a  class="nav-link nav-text" (click)="onSignUp">Sign Up</a>-->
+    </div>
+  </ng-template>
 </header>
 
 
 <router-outlet></router-outlet>
+

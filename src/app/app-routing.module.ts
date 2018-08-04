@@ -9,11 +9,12 @@ const routes: Routes = [
     path: 'orders', loadChildren: 'app/orders/orders.module#OrdersModule'
   },
   {
-    path: 'signup', loadChildren: 'app/signup/signup.module#SignupModule'
+    path: 'login', loadChildren: 'app/login/login.module#LoginModule'
   },
   {
-    path: 'login', loadChildren: 'app/login/login.module#LoginModule'
-  }
+    path: 'signup', loadChildren: 'app/signup/signup.module#SignupModule'
+  },
+
 ];
 
 @NgModule({
