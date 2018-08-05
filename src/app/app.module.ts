@@ -33,7 +33,7 @@ import {FirebaseAuthService} from './services/firebase-auth.service';
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
   ],
   bootstrap: [AppComponent]
 })
