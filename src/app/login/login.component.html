@@ -1,14 +1,24 @@
+<div class="container">
+  <div class="clr-row">
 
-<div>
-  <h3>Login</h3>
+    <form clrForm class="clr-form">
+      <div >
+        <label for="email" >Email</label>
+        <input type="email" [(ngModel)]="user.email" name="email" id="email">
+        <div>
+          <label for="password">Password</label>
+          <input  type="password" [(ngModel)]="user.password" name="password" id="password" >
+        </div>
+      </div>
+    </form>
 
-    <button class="btn btn-default" (click)="loginWithGoogle()">
-      <!--<i class="fa fa-google"></i>-->
-      Login with google</button>
-
-
-
-
+    <div class="clr-col-6">
+      <button class="btn btn-default" (click)="loginWithGoogle()">Login with google</button>
+    </div>
+    <div class="clr-col-6">
+      <button class="btn btn-default" (click)="loginWithFacebook()">Login with facebook</button>
+    </div>
+</div>
 
 </div>
 

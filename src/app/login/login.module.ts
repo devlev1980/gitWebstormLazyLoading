@@ -10,6 +10,7 @@ import {FirebaseAuthService} from '../services/firebase-auth.service';
   imports: [
     CommonModule,
     LoginRoutingModule,
+    SharedModule.forRoot(),
   ],
 
   declarations: [LoginComponent],

@@ -7,7 +7,7 @@
     <!--...-->
   <!--</div>-->
   <div class="header-nav">
-    <span class=" nav-link nav-text" *ngIf="afAuth.user|async as user">{{user.displayName}}</span>
+    <span class=" nav-link nav-text" *ngIf="afAuth.user|async as user">Hello {{user.displayName}}</span>
     <a routerLink="/customers" class="nav-link nav-text">Customers</a>
     <a routerLink="/orders" class="nav-link nav-text">Search Artist</a>
 
