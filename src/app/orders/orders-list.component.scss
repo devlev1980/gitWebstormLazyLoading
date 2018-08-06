@@ -12,6 +12,7 @@ mat-cell, mat-header-cell, mat-paginator {
 
 }
 
+
 mat-header-row {
   border-bottom-color: #757e83;
 }
@@ -27,12 +28,20 @@ mat-row {
   .mat-select-value,.mat-select-arrow{
     color: #B8C1C6 ;
   }
+  .mat-icon-button[disabled]{
+    color: #545e63;
+  }
 
 }
 .btn-primary{
   background-color: #002538;
   border: none;
+  box-shadow: none;
   margin-left: 1rem;
+
+}
+.btn-primary:active{
+  box-shadow: none !important;
 }
 
 
