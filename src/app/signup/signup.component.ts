@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {User} from '../models/user';
 import {FirebaseAuthService} from '../services/firebase-auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -10,7 +11,7 @@ import {FirebaseAuthService} from '../services/firebase-auth.service';
 export class SignupComponent implements OnInit {
   user = {} as User;
 
-  constructor(private _fbService: FirebaseAuthService) {
+  constructor(private _fbService: FirebaseAuthService,private router: Router) {
   }
 
   ngOnInit() {
@@ -18,7 +19,8 @@ export class SignupComponent implements OnInit {
 
   onSubmit(form) {
     console.log(form);
-    this._fbService.signup(form.email, form.password);
+    this._fbService.signupWithEmailPassword(form.email, form.password);
+    this.router.navigate(['/']);
   }
 
 }

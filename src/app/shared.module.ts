@@ -5,6 +5,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ApiProviderService} from './services/api-provider.service';
 import {CustomerService} from './services/customer.service';
 import {ClarityModule} from '@clr/angular';
+import {FirebaseAuthService} from './services/firebase-auth.service';
 
 @NgModule({
   imports: [
@@ -31,6 +32,7 @@ export class SharedModule {
       providers: [
         ApiProviderService,
         CustomerService,
+        FirebaseAuthService
       ]
     };
   }

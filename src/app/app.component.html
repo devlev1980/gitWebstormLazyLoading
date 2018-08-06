@@ -1,27 +1,23 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<!--<button mat-raised-button color="primary" routerLink="/customers">Customers</button>-->
-<!--<button mat-raised-button color="warn" routerLink="/orders">Orders</button>-->
+
 
 <header class="header-6">
   <!--<div class="branding">-->
     <!--...-->
   <!--</div>-->
   <div class="header-nav">
-    <span class=" nav-link nav-text" *ngIf="user|async as user">Hello {{user.displayName}}</span>
+    <span class=" nav-link nav-text" *ngIf="user|async as user">Hello {{user.email}}</span>
     <a routerLink="/customers" class="nav-link nav-text">Customers</a>
-    <a routerLink="/orders" class="nav-link nav-text" *ngIf="user">Search Artist</a>
+    <a routerLink="/orders" class="nav-link nav-text">Search Artist</a>
 
   </div>
   <div class="header-actions" *ngIf="user|async as user;else logIn">
     <a  class="nav-link nav-text" routerLink="/login" (click)="logOutFromGoogle()">Logout</a>
       <a  class="nav-link nav-text" routerLink="/signup">Signup</a>
-    <!--<a  class="nav-link nav-text" (click)="onSignUp">Sign Up</a>-->
   </div>
   <ng-template #logIn>
     <div class="header-actions" >
       <a  class="nav-link nav-text" routerLink="/login" >Login</a>
       <a  class="nav-link nav-text" routerLink="/signup">Signup</a>
-      <!--<a  class="nav-link nav-text" (click)="onSignUp">Sign Up</a>-->
     </div>
   </ng-template>
 </header>

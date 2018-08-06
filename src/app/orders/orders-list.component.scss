@@ -1,0 +1,41 @@
+mat-table, mat-paginator {
+  background-color: #002538;
+  color: #B8C1C6;
+
+}
+.mat-table{
+  margin-top:1rem;
+}
+
+mat-cell, mat-header-cell, mat-paginator {
+  color: #B8C1C6;
+
+}
+
+mat-header-row {
+  border-bottom-color: #757e83;
+}
+
+mat-row {
+  border-bottom-color: #757e83;
+  border-top-color: #757e83;
+}
+.mat-paginator::ng-deep{
+  display: flex;
+  justify-content: space-around;
+
+  .mat-select-value,.mat-select-arrow{
+    color: #B8C1C6 ;
+  }
+
+}
+.btn-primary{
+  background-color: #002538;
+  border: none;
+  margin-left: 1rem;
+}
+
+
+
+
+

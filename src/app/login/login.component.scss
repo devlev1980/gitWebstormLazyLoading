@@ -1,10 +1,22 @@
-.container{
-  display: flex;
-  margin-top: 20%;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid orange;
-  width: 30vw;
-  padding: 10px 20px;
+.clr-form{
+  width: 400px;
+  margin: 0 auto;
+  padding: 10px 30px;
 }
+.clr-control-label{
+  display: table;
 
+}
+.buttons{
+  margin-left: 3rem;
+}
+.form-group{
+  padding-left: 4rem;
+}
+button{
+  margin-top: 1rem;
+}
+.card{
+  width: 400px;
+  padding: 10px 40px;
+}

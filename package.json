@@ -27,6 +27,7 @@
     "@clr/icons": "^0.11.0",
     "@clr/ui": "^0.11.0",
     "@webcomponents/custom-elements": "^1.0.0",
+    "angular-2-local-storage": "^2.0.0",
     "angular2-fontawesome": "^5.2.1",
     "angularfire2": "^5.0.0-rc.11",
     "angularx-social-login": "^1.2.3",

@@ -12,36 +12,35 @@ import {ToastrService} from 'ngx-toastr';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  user: User;
-  isLoggedIn: boolean = false;
-  constructor(public fbAuth: FirebaseAuthService, private router: Router, private toastr: ToastrService) {
+  user = {} as User;
+
+  constructor(public fbAuth: FirebaseAuthService, private router: Router) {
   }
 
   loginWithGoogle() {
-    this.fbAuth.signInWithGoogle().then(user => {
-        this.isLoggedIn = true;
-        if (user.user.emailVerified){
-          this.toastr.success('everything is broken', 'Major Error', {
-            timeOut: 3000
-          });
-        }
-        console.log(user.additionalUserInfo);
-
-        // this.toastr.error('Something went wrong.Please try again later')
-
-    });
+    this.fbAuth.signInWithGoogle();
     this.router.navigate(['/']);
 
   }
 
-  loginWithGithub() {
-    this.fbAuth.signInWithGitHub();
+  loginWithFacebook() {
+    this.fbAuth.signInWithFacebook().then(success => {
+      this.router.navigate(['/']);
+
+    });
+
   }
 
-  loginWithFacebook() {
-    this.fbAuth.signInWithFacebook().then(user => {
-      console.log(user);
+  loginWithGithub() {
+    this.fbAuth.signInWithGitHub().then(success=>{
+      this.router.navigate(['/']);
     });
+
+  }
+
+  login(form) {
+    this.fbAuth.loginWithEmailPassword(form.email, form.password);
+    this.router.navigate(['/']);
   }
 
 

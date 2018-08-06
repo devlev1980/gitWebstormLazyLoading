@@ -7,12 +7,12 @@ import {AppComponent} from './app.component';
 import {SharedModule} from './shared.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http';
-import {LoginComponent} from './login/login.component';
 import {AngularFireModule} from 'angularfire2';
 import {environment} from '../environments/environment';
 import {AngularFireAuthModule} from 'angularfire2/auth';
 import {AngularFireDatabaseModule} from 'angularfire2/database';
-import {FirebaseAuthService} from './services/firebase-auth.service';
+import { NotfoundComponent } from './notfound/notfound.component';
+import { HomeComponent } from './home/home.component';
 
 
 
@@ -22,6 +22,8 @@ import {FirebaseAuthService} from './services/firebase-auth.service';
 @NgModule({
   declarations: [
     AppComponent,
+    NotfoundComponent,
+    HomeComponent,
 
 
   ],

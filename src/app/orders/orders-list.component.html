@@ -1,5 +1,5 @@
 <div class="clr-row">
-  <div class="clr-col-12 clr-offset-5">
+  <div class="text-center">
     <mat-form-field class="example-full-width" >
       <input matInput placeholder="Artist" [(ngModel)]="artist">
     </mat-form-field>
@@ -11,7 +11,10 @@
 </div>
 
 <mat-table  #table [dataSource]="dataSource" matSort class="mat-elevation-z8">
-
+  <ng-container matColumnDef="index" >
+    <mat-header-cell  *matHeaderCellDef mat-sort-header > No </mat-header-cell>
+    <mat-cell  *matCellDef="let album;let i=index">{{i+1}} </mat-cell>
+  </ng-container>
   <!-- artwork Column -->
   <ng-container matColumnDef="artwork">
     <mat-header-cell  *matHeaderCellDef mat-sort-header> Artwork </mat-header-cell>

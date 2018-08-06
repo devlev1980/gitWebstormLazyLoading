@@ -3,17 +3,14 @@ import {Observable} from 'rxjs/Observable';
 import {AngularFireAuth} from 'angularfire2/auth';
 import * as firebase from 'firebase';
 import {ToastrService} from 'ngx-toastr';
-import {FirebaseDatabase} from 'angularfire2';
-import AuthProvider = firebase.auth.AuthProvider;
-import {e} from '@angular/core/src/render3';
 
 @Injectable()
 export class FirebaseAuthService {
-  private user: Observable<firebase.User>;
+  public user: Observable<firebase.User>;
   private userDetails: firebase.User = null;
 
 
-  constructor(private _firebaseAuth: AngularFireAuth, private toastr: ToastrService, private fbDatabase: FirebaseDatabase) {
+  constructor(private _firebaseAuth: AngularFireAuth) {
     this.user = this._firebaseAuth.authState;
 
     this.user.subscribe(user => {
@@ -43,7 +40,7 @@ export class FirebaseAuthService {
     return this._firebaseAuth.auth.signOut();
   }
 
-  signup(email: string, password: string) {
+  signupWithEmailPassword(email: string, password: string) {
     this._firebaseAuth
       .auth
       .createUserWithEmailAndPassword(email, password)
@@ -51,10 +48,11 @@ export class FirebaseAuthService {
         console.log('Success!', value);
       })
       .catch(err => {
-        console.log('Something went wrong:',err.message);
+        console.log('Something went wrong:', err.message);
       });
   }
-  login(email: string, password: string) {
+
+  loginWithEmailPassword(email: string, password: string) {
     this._firebaseAuth
       .auth
       .signInWithEmailAndPassword(email, password)
@@ -62,10 +60,9 @@ export class FirebaseAuthService {
         console.log('Nice, it worked!');
       })
       .catch(err => {
-        console.log('Something went wrong:',err.message);
+        console.log('Something went wrong:', err.message);
       });
   }
-
 
 
 }

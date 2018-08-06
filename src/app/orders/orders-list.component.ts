@@ -15,34 +15,35 @@ export class OrdersListComponent implements OnInit {
   artWorks;
   artWork64;
   artist: string;
-  displayedColumns = ['artwork', 'name', 'playcount', 'url'];
+  displayedColumns = ['index', 'artwork', 'name', 'playcount', 'url'];
   dataSource;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  length = 100;
-  pageSize = 10;
+  length;
+  pageSize = 13;
   pageEvent: PageEvent;
-  pageSizeOptions: number[] = [5, 10, 25, 100];
+  pageSizeOptions: number[] = [13, 50, 100];
 
   constructor(private lastFmService: LastFmService, private sanitazion: DomSanitizer) {
+
   }
 
-  setPageSizeOptions(setPageSizeOptionsInput: string) {
-    this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
-  }
+  // setPageSizeOptions(setPageSizeOptionsInput: string) {
+  //   this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
+  // }
 
   ngOnInit() {
     // this.getData(this.artist);
 
-
-
-
   }
-  getData(artistName: string){
+
+  getData(artistName: string) {
     this.lastFmService.getAlbumsByArtist(artistName).subscribe(album => {
       this.albums = album.topalbums.album;
-      this.paginator.length = this.albums.length;
       this.dataSource = new MatTableDataSource(this.albums);
-      this.pageSize = this.paginator.pageSize;
+      this.length = this.albums.length;
+      this.dataSource.paginator = this.paginator;
+
+      // this.pageSize = this.paginator.pageSize;
 
     });
   }
