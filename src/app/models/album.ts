@@ -17,6 +17,13 @@ export interface AlbumByArtist {
     name: string;
     playcount: string;
     url: string;
+    '@attr':{
+      artist: string;
+      page: string;
+      prePage: string;
+      totalPages: string;
+      total: string;
+    }
   };
 
 }

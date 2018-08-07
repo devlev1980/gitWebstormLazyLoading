@@ -4,6 +4,8 @@ import {AlbumByArtist} from '../models/album';
 import {DomSanitizer} from '@angular/platform-browser';
 import {MatPaginator, MatTableDataSource} from '@angular/material';
 import {PageEvent} from '@angular/material/typings/esm5/paginator';
+import {LocalStorageService} from 'angular-2-local-storage';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-orders-list',
@@ -15,7 +17,7 @@ export class OrdersListComponent implements OnInit {
   artWorks;
   artWork64;
   artist: string;
-  displayedColumns = ['index', 'artwork', 'name', 'playcount', 'url'];
+  displayedColumns = ['index', 'artist', 'artwork', 'name', 'playcount', 'url'];
   dataSource;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   length;
@@ -23,7 +25,7 @@ export class OrdersListComponent implements OnInit {
   pageEvent: PageEvent;
   pageSizeOptions: number[] = [13, 50, 100];
 
-  constructor(private lastFmService: LastFmService, private sanitazion: DomSanitizer) {
+  constructor(private lastFmService: LastFmService, private sanitazion: DomSanitizer, private lsService: LocalStorageService,private router: Router) {
 
   }
 
@@ -32,20 +34,23 @@ export class OrdersListComponent implements OnInit {
   // }
 
   ngOnInit() {
-    // this.getData(this.artist);
-
+    const artistName = JSON.parse(this.lsService.get('artist'));
+    this.getData(artistName);
   }
 
   getData(artistName: string) {
+
     this.lastFmService.getAlbumsByArtist(artistName).subscribe(album => {
+      console.log(album.topalbums['@attr'].artist);
       this.albums = album.topalbums.album;
       this.dataSource = new MatTableDataSource(this.albums);
+      this.lsService.set('artist', JSON.stringify(artistName));
       this.length = this.albums.length;
       this.dataSource.paginator = this.paginator;
-
-      // this.pageSize = this.paginator.pageSize;
-
     });
+  }
+  onAlbumDetails(album: string, atrist: string){
+    this.router.navigate(['/orders/albumInfo']);
   }
 
 }

@@ -21,6 +21,9 @@ const routes: Routes = [
     path: 'signup', loadChildren: 'app/signup/signup.module#SignupModule'
   },
   {
+    path: 'orders/albumInfo', loadChildren: 'app/orders/orders.module#OrdersModule'
+  },
+  {
     path: '**', component: NotfoundComponent
   },
 

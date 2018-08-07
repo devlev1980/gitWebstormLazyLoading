@@ -11,15 +11,19 @@ const lastFMAPI = {
 
 @Injectable()
 export class LastFmService {
-
+lastFMAPIURL = 'http://ws.audioscrobbler.com/2.0/';
 
   constructor(private _http: HttpClient) {
   }
 
   getAlbumsByArtist(artist: string): Observable<AlbumByArtist> {
-    const lastFmURL = `http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=${artist}&api_key=${lastFMAPI.APIkey}&format=json`;
+    const lastFmURL = `${this.lastFMAPIURL}/?method=artist.gettopalbums&artist=${artist}&api_key=${lastFMAPI.APIkey}&format=json`;
 
     return this._http.get<any>(lastFmURL);
+  }
+
+  getAlbumInfo(artist: string, album: string) {
+    const url =  `${this.lastFMAPIURL}/?method=album.getinfo&api_key=${lastFMAPI}&artist=${artist}&album=${album}=json`;
   }
 
 }
