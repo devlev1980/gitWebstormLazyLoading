@@ -13,6 +13,7 @@ import {AngularFireAuthModule} from 'angularfire2/auth';
 import {AngularFireDatabaseModule} from 'angularfire2/database';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { HomeComponent } from './home/home.component';
+import {AlbumsDataService} from './services/albums-data.service';
 
 
 
@@ -37,6 +38,7 @@ import { HomeComponent } from './home/home.component';
     AngularFireAuthModule,
     AngularFireDatabaseModule,
   ],
+  providers: [AlbumsDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

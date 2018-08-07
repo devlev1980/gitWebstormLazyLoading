@@ -8,7 +8,7 @@ const routes: Routes = [
     path: '', component: OrdersListComponent
   },
   {
-    path: 'albumInfo',
+    path: 'albumInfo/:id',
     component: AlbumInfoComponent,
     pathMatch: 'full',
   },

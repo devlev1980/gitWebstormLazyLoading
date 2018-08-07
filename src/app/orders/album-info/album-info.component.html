@@ -1,3 +1,33 @@
-<p>
-  album-info works!
-</p>
+<div class="row">
+  <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+    <div class="card">
+      <div class="card-header">
+        {{albumsInfo.album?.name}}
+      </div>
+      <div class="card-block">
+        <div class="card-media-block">
+          <img src="{{albumsInfo.album?.image[1]['#text']}}" class="card-media-image">
+          <div class="card-media-description">
+                        <span class="card-media-title" >
+                          {{track.track?.name}}
+                        </span>
+            <span class="card-media-text" >
+
+                        </span>
+          </div>
+        </div>
+        <div class="card-text">
+          <ul>
+            <li *ngFor="let item of tracks">{{item|json}}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card-footer">
+        <button class="btn btn-sm btn-link">Action</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+

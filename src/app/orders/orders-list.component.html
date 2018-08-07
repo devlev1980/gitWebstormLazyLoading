@@ -18,7 +18,7 @@
   <!-- artwork Column -->
   <ng-container matColumnDef="artwork">
     <mat-header-cell  *matHeaderCellDef mat-sort-header> Artwork </mat-header-cell>
-    <mat-cell  *matCellDef="let album"><img [src]="album.image[0]['#text']" (click)="onAlbumDetails(album.name,album.artist)"> </mat-cell>
+    <mat-cell  *matCellDef="let album"><img [src]="album.image[0]['#text']" (click)="onAlbumDetails(album.name,album.artist.name,album.mbid)"> </mat-cell>
   </ng-container>
 <!--artist-->
   <ng-container matColumnDef="artist">

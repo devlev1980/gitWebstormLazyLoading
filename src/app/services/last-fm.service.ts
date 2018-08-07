@@ -3,15 +3,17 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {Observable} from 'rxjs/Observable';
 import {AlbumByArtist} from '../models/album';
+import {AlbumInfo} from '../models/album-info';
 
 const lastFMAPI = {
-  APIkey: '28714f77143c62ead0c2016182f8ea01',
-  RegisteredTo: 'devlev1980'
+  APIkey: '4aad7ea518d8711a894af30b7ce5cd47',
+  RegisteredTo: 'devlev1980',
+  SharedSecret: '87b0edd4de037f6074c31af8ac5a2889'
 };
 
 @Injectable()
 export class LastFmService {
-lastFMAPIURL = 'http://ws.audioscrobbler.com/2.0/';
+  lastFMAPIURL = 'http://ws.audioscrobbler.com/2.0';
 
   constructor(private _http: HttpClient) {
   }
@@ -22,8 +24,11 @@ lastFMAPIURL = 'http://ws.audioscrobbler.com/2.0/';
     return this._http.get<any>(lastFmURL);
   }
 
-  getAlbumInfo(artist: string, album: string) {
-    const url =  `${this.lastFMAPIURL}/?method=album.getinfo&api_key=${lastFMAPI}&artist=${artist}&album=${album}=json`;
+  getAlbumInfo(album: string, artist: string): Observable<AlbumInfo> {
+     const url = `http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=4aad7ea518d8711a894af30b7ce5cd47&artist=${artist}&album=${album}&format=json`;
+
+    return this._http.get<AlbumInfo>(url);
+
   }
 
 }
