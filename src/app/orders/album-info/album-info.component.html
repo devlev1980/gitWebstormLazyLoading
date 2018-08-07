@@ -7,23 +7,25 @@
       <div class="card-block">
         <div class="card-media-block">
           <img src="{{albumsInfo.album?.image[1]['#text']}}" class="card-media-image">
-          <div class="card-media-description">
-                        <span class="card-media-title" >
-                          {{track.track?.name}}
-                        </span>
-            <span class="card-media-text" >
+          <div class="card-media-description col-md-3 ">
+                        <span class="card-media-title ">
+                          Tracks:
+                           </span>
 
-                        </span>
+
           </div>
+          <div class="card-media-description">
+          <span class="card-media-text mt-1" *ngFor="let item of tracks; let i =index">
+                          <span class="track-number">{{i+1}}. {{item.name}}</span>
+
+                        </span></div>
         </div>
         <div class="card-text">
-          <ul>
-            <li *ngFor="let item of tracks">{{item|json}}</li>
-          </ul>
+
         </div>
       </div>
       <div class="card-footer">
-        <button class="btn btn-sm btn-link">Action</button>
+        <button class="btn btn-sm btn-primary">Listen on Last-FM<a [routerLink]="albumsInfo.album?.url"></a></button>
       </div>
     </div>
   </div>

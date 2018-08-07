@@ -2,7 +2,7 @@ import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {OrdersListComponent} from '../orders-list.component';
 import {AlbumsDataService} from '../../services/albums-data.service';
 import {AlbumByArtist} from '../../models/album';
-import {AlbumInfo, Track} from '../../models/album-info';
+import {AlbumInfo} from '../../models/album-info';
 
 @Component({
   selector: 'app-album-info',
@@ -11,7 +11,7 @@ import {AlbumInfo, Track} from '../../models/album-info';
 })
 export class AlbumInfoComponent implements OnInit {
   albumsInfo = {} as  AlbumInfo;
-  track = {} as Track;
+  tracks = [];
 
   constructor(private albumsService: AlbumsDataService) {
   }
@@ -20,9 +20,7 @@ export class AlbumInfoComponent implements OnInit {
     this.albumsService.getAlbums().subscribe(info => {
       console.log(info);
       this.albumsInfo = info;
-      // this.albumsInfo.album.tracks.map(track => {
-      //   this.track = track;
-      // });
+      this.tracks = info.album.tracks.track;
     });
   }
 

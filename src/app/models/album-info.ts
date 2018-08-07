@@ -3,17 +3,32 @@ export interface AlbumInfo {
     artist: string;
     name: string;
     image: Image[];
-    tracks: Track[];
+    tracks: {
+      track: [
+        { name: string; duration: string }
+        ]
+    }
+    url: string;
+    wikipedia: {
+      content: string;
+      published: string;
+      summary: string;
+    }
+
+
+
   };
 }
 
-export interface Track {
-  track: {
-    name: string;
-    url: string;
-    duration: string;
-  };
-}
+//
+// export interface Track {
+//   track: {
+//     name: string;
+//     url: string;
+//     duration: string;
+//   };
+//
+// }
 
 export interface Image {
   image:
