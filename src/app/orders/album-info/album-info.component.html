@@ -25,9 +25,16 @@
         </div>
       </div>
       <div class="card-footer">
+        <button  class="btn btn-sm btn-primary" (click)="onBack()">Back</button>
         <a [href]="albumsInfo.album?.url" target="_blank" class="btn btn-sm btn-primary">Listen on Last-FM></a>
       </div>
     </div>
+    <!--<div class="row col-md-10 offset-md-10" >-->
+      <!--<button  class="btn btn-primary" (click)="onBack()">Back</button>-->
+    <!--</div>-->
+    <!--<div class="row col-lg-2">-->
+      <!--<button routerLink="/orders" class="btn btn-primary">Next</button>-->
+    <!--</div>-->
   </div>
 <app-more-data class="col-md-8" style="max-height: 600px" ></app-more-data>
 </div>

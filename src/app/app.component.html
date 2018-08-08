@@ -8,6 +8,7 @@
     <span class=" nav-link nav-text" *ngIf="user|async as user">Hello {{user.email}}</span>
     <a routerLink="/customers"   class="nav-link nav-text" *ngIf="false">Customers</a>
     <a routerLink="/orders"  class="nav-link nav-text">Search Artist</a>
+    <a routerLink="/charts"  class="nav-link nav-text">Top Artist Charts</a>
 
   </div>
   <div class="header-actions" *ngIf="user|async as user;else logIn">
