@@ -1,7 +1,7 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {LastFmService} from '../services/last-fm.service';
 import {DomSanitizer} from '@angular/platform-browser';
-import {MatPaginator, MatTableDataSource} from '@angular/material';
+import {MatPaginator, MatTableDataSource, ThemePalette} from '@angular/material';
 import {PageEvent} from '@angular/material/typings/esm5/paginator';
 import {LocalStorageService} from 'angular-2-local-storage';
 import {Router} from '@angular/router';
@@ -24,8 +24,10 @@ export class OrdersListComponent implements OnInit {
   pageSize = 13;
   pageEvent: PageEvent;
   pageSizeOptions: number[] = [13, 50, 100];
+  color: '#fff';
 
   constructor(private lastFmService: LastFmService, private sanitazion: DomSanitizer, private lsService: LocalStorageService, private router: Router, private albumsService: AlbumsDataService) {
+
 
   }
 
@@ -33,6 +35,9 @@ export class OrdersListComponent implements OnInit {
   ngOnInit() {
     const artistName = JSON.parse(this.lsService.get('artist'));
     this.getData(artistName);
+    this.lastFmService.getArtists().subscribe(data=>{
+      console.log(data)
+    })
   }
 
   getData(artistName: string) {

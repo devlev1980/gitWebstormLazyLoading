@@ -1,3 +1,6 @@
+
+
+
 mat-table, mat-paginator {
   background-color: #002538;
   color: #B8C1C6;
@@ -9,6 +12,9 @@ mat-table, mat-paginator {
 
 mat-cell, mat-header-cell, mat-paginator {
   color: #B8C1C6;
+  &:hover{
+    cursor: pointer;
+  }
 
 }
 
@@ -43,6 +49,14 @@ mat-row {
 .btn-primary:active{
   box-shadow: none !important;
 }
+mat-spinner{
+ margin: 15% 47% auto;
+ 
+}
+
+
+
+
 
 
 

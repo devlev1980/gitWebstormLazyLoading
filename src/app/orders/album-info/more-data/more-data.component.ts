@@ -17,7 +17,7 @@ export class MoreDataComponent implements OnInit {
 
   ngOnInit() {
     this.moreData = this.albumInfoService.getAlbumInfo();
-    console.log(this.moreData)
+    console.log(this.moreData.album.wiki)
   }
 
 }
