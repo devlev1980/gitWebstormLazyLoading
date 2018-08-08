@@ -35,9 +35,9 @@ export class OrdersListComponent implements OnInit {
   ngOnInit() {
     const artistName = JSON.parse(this.lsService.get('artist'));
     this.getData(artistName);
-    this.lastFmService.getArtists().subscribe(data=>{
-      console.log(data)
-    })
+    this.lastFmService.getArtists().subscribe(data => {
+      console.log(data);
+    });
   }
 
   getData(artistName: string) {
@@ -54,7 +54,7 @@ export class OrdersListComponent implements OnInit {
 
 
   onAlbumDetails(album: string, artist: string, mbid: string) {
-    this.router.navigate([`/orders/albumInfo/${mbid}`]);
+    this.router.navigate([`/orders/albumInfo/${mbid}`], {queryParams: {artist: artist}});
     console.log(album, artist);
     this.lastFmService.getAlbumInfo(album, artist).subscribe(info => {
       this.albumsService.sendAlbums(info);

@@ -10,6 +10,9 @@ const lastFMAPI = {
   RegisteredTo: 'devlev1980',
   SharedSecret: '87b0edd4de037f6074c31af8ac5a2889'
 };
+const musicGraphAPI = {
+  APIkey: 'c9fcf4cf1faff6941e29bca12443f806'
+}
 
 @Injectable()
 export class LastFmService {

@@ -1,9 +1,10 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
 import {OrdersListComponent} from '../orders-list.component';
 import {AlbumsDataService} from '../../services/albums-data.service';
 import {AlbumByArtist} from '../../models/album';
 import {AlbumInfo} from '../../models/album-info';
 import {AlbumInfoService} from '../../services/album-info.service';
+import { PerfectScrollbarDirective } from 'ngx-perfect-scrollbar';
 
 @Component({
   selector: 'app-album-info',
@@ -13,7 +14,7 @@ import {AlbumInfoService} from '../../services/album-info.service';
 export class AlbumInfoComponent implements OnInit {
   albumsInfo = {} as  AlbumInfo;
   tracks = [];
-
+  @ViewChildren(PerfectScrollbarDirective) scrollBars: QueryList<PerfectScrollbarDirective>;
   constructor(private albumsService: AlbumsDataService,private albumInfoService: AlbumInfoService) {
   }
 
