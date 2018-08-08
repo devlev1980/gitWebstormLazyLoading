@@ -14,6 +14,7 @@ import {AngularFireDatabaseModule} from 'angularfire2/database';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { HomeComponent } from './home/home.component';
 import {AlbumsDataService} from './services/albums-data.service';
+import {AlbumInfoService} from './services/album-info.service';
 
 
 
@@ -38,7 +39,7 @@ import {AlbumsDataService} from './services/albums-data.service';
     AngularFireAuthModule,
     AngularFireDatabaseModule,
   ],
-  providers: [AlbumsDataService],
+  providers: [AlbumsDataService,AlbumInfoService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

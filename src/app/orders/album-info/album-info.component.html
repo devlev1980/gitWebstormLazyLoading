@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+  <div class="col-lg-6 ">
     <div class="card">
       <div class="card-header">
         {{albumsInfo.album?.name}}
@@ -25,11 +25,11 @@
         </div>
       </div>
       <div class="card-footer">
-        <button class="btn btn-sm btn-primary">Listen on Last-FM<a [routerLink]="albumsInfo.album?.url"></a></button>
+        <a [href]="albumsInfo.album?.url" target="_blank" class="btn btn-sm btn-primary">Listen on Last-FM></a>
       </div>
     </div>
   </div>
-
+<app-more-data ></app-more-data>
 </div>
 
 

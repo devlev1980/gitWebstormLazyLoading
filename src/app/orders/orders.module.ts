@@ -7,6 +7,8 @@ import {LastFmService} from '../services/last-fm.service';
 import {SharedModule} from '../shared.module';
 import {LocalStorageModule, LocalStorageService} from 'angular-2-local-storage';
 import { AlbumInfoComponent } from './album-info/album-info.component';
+import { MoreDataComponent } from './album-info/more-data/more-data.component';
+import {AlbumInfoService} from '../services/album-info.service';
 
 @NgModule({
   imports: [
@@ -18,7 +20,7 @@ import { AlbumInfoComponent } from './album-info/album-info.component';
     })
   ],
   providers: [LastFmService, LocalStorageService],
-  declarations: [OrdersListComponent, AlbumInfoComponent]
+  declarations: [OrdersListComponent, AlbumInfoComponent, MoreDataComponent]
 })
 export class OrdersModule {
 }

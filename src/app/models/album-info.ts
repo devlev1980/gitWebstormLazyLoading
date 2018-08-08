@@ -1,5 +1,5 @@
 export interface AlbumInfo {
-  album: {
+  album?: {
     artist: string;
     name: string;
     image: Image[];
@@ -9,7 +9,7 @@ export interface AlbumInfo {
         ]
     }
     url: string;
-    wikipedia: {
+    wiki: {
       content: string;
       published: string;
       summary: string;

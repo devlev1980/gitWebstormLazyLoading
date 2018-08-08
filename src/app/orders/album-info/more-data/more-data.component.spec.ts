@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WikiInfoComponent } from './wiki-info.component';
+import { MoreDataComponent } from './more-data.component';
 
-describe('WikiInfoComponent', () => {
-  let component: WikiInfoComponent;
-  let fixture: ComponentFixture<WikiInfoComponent>;
+describe('MoreDataComponent', () => {
+  let component: MoreDataComponent;
+  let fixture: ComponentFixture<MoreDataComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ WikiInfoComponent ]
+      declarations: [ MoreDataComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(WikiInfoComponent);
+    fixture = TestBed.createComponent(MoreDataComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
