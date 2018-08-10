@@ -11,15 +11,11 @@ import {AngularFireModule} from 'angularfire2';
 import {environment} from '../environments/environment';
 import {AngularFireAuthModule} from 'angularfire2/auth';
 import {AngularFireDatabaseModule} from 'angularfire2/database';
-import { NotfoundComponent } from './notfound/notfound.component';
-import { HomeComponent } from './home/home.component';
+import {NotfoundComponent} from './notfound/notfound.component';
+import {HomeComponent} from './home/home.component';
 import {AlbumsDataService} from './services/albums-data.service';
 import {AlbumInfoService} from './services/album-info.service';
-
-
-
-
-
+import SpotifyService from 'angular2-spotify';
 
 @NgModule({
   declarations: [
@@ -39,7 +35,7 @@ import {AlbumInfoService} from './services/album-info.service';
     AngularFireAuthModule,
     AngularFireDatabaseModule,
   ],
-  providers: [AlbumsDataService,AlbumInfoService],
+  providers: [AlbumsDataService, AlbumInfoService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

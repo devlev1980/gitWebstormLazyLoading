@@ -6,6 +6,7 @@ import {Charts} from '../models/chart';
   selector: 'app-charts',
   templateUrl: './charts.component.html',
   styleUrls: ['./charts.component.scss']
+
 })
 export class ChartsComponent implements OnInit {
 

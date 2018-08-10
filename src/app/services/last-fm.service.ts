@@ -22,23 +22,21 @@ export class LastFmService {
   }
 
   getAlbumsByArtist(artist: string): Observable<AlbumByArtist> {
-    const lastFmURL = `${this.lastFMAPIURL}/?method=artist.gettopalbums&artist=${artist}&
-    api_key=${lastFMAPI.APIkey}&format=json`;
+    const lastFmURL = `${this.lastFMAPIURL}/?method=artist.gettopalbums&artist=${artist}&api_key=${lastFMAPI.APIkey}&format=json`;
+
 
     return this._http.get<any>(lastFmURL);
   }
 
   getAlbumInfo(album: string, artist: string): Observable<AlbumInfo> {
-    const url = `http://ws.audioscrobbler.com/2.0/?method=album.getinfo&
-    api_key=4aad7ea518d8711a894af30b7ce5cd47&artist=${artist}&album=${album}&format=json`;
+    const url = `http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=4aad7ea518d8711a894af30b7ce5cd47&artist=${artist}&album=${album}&format=json`;
 
     return this._http.get<AlbumInfo>(url);
 
   }
 
   getArtists() {
-    const url = `${this.lastFMAPIURL}/?method=library.getartists&
-    api_key=${lastFMAPI.APIkey}&user=${lastFMAPI.RegisteredTo}&format=json`;
+    const url = `${this.lastFMAPIURL}/?method=library.getartists&api_key=${lastFMAPI.APIkey}&user=${lastFMAPI.RegisteredTo}&format=json`;
     return this._http.get(url);
   }
 

@@ -6,6 +6,8 @@ import {PageEvent} from '@angular/material/typings/esm5/paginator';
 import {LocalStorageService} from 'angular-2-local-storage';
 import {Router} from '@angular/router';
 import {AlbumsDataService} from '../services/albums-data.service';
+import {SpotifyService} from '../services/spotify.service';
+
 
 @Component({
   selector: 'app-orders-list',
@@ -26,7 +28,7 @@ export class OrdersListComponent implements OnInit {
   pageSizeOptions: number[] = [13, 50, 100];
   color: '#fff';
 
-  constructor(private lastFmService: LastFmService, private sanitazion: DomSanitizer, private lsService: LocalStorageService, private router: Router, private albumsService: AlbumsDataService) {
+  constructor(private lastFmService: LastFmService, private sanitazion: DomSanitizer, private lsService: LocalStorageService, private router: Router, private albumsService: AlbumsDataService,private spotifyService: SpotifyService) {
 
 
   }
@@ -40,7 +42,7 @@ export class OrdersListComponent implements OnInit {
     });
   }
 
-  getData(artistName: string) {
+  getData(artistName: string, ) {
 
     this.lastFmService.getAlbumsByArtist(artistName).subscribe(album => {
       this.albums = album.topalbums.album;
@@ -49,6 +51,13 @@ export class OrdersListComponent implements OnInit {
       this.lsService.set('artist', JSON.stringify(artistName));
       this.length = this.albums.length;
       this.dataSource.paginator = this.paginator;
+
+      this.spotifyService.searchArtist(artistName).subscribe(artist=>{
+        console.log(artist.artists.items[0]);
+      });
+      // this.spotifyService.searchAlbums()
+
+
     });
   }
 
