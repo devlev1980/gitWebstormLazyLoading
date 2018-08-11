@@ -5,6 +5,7 @@ import 'rxjs/add/operator/map';
 import {Observable} from 'rxjs/Observable';
 import {SpotifyArtist} from '../models/spotify-artist';
 import {SpotifyAlbumsPerArtist} from '../models/spotify-albums-per-artist';
+import {SpotifyTracksPerAlbum} from '../models/spotify-tracks-per-album';
 
 @Injectable()
 export class SpotifyService {
@@ -15,7 +16,7 @@ export class SpotifyService {
   private tracksUrl = this.baseUrl + '/albums/';
   private artistUrl: string;
 
-  public access_token = 'Bearer BQD_-fIWMeeEfivWGZroDIqX6_0FrTlE7hHCs6hPrlPW-nTIWEPDjcZZD17YN8SeWkVBnyV-6qM2K-LQ7nUEPsbQZfYHSr9YjG9eQhD0GfyrkiXaklVcCYlKpWP04bOZXqN6LnKziLViBqMMjgDMiUhe-kDyPwTtv45JnMymJ84H0Rziih2W1GrqowOjstopmHORLyMZnUnGxob7z2AF-wDqvLA4F2mF0j0JFe8g-Co7xX3OnXPVsxZd6q68M_JFNOtNKyK3MNkJ';
+  public access_token = 'Bearer BQA32SDGrODRkahdOrGlt2YJ4EByBW6_NDgj-Rk35Djmv7YCyQRghm1eCXC_1fzEuNHVNzUhZ1jSOPil2ErryRQNHe-ZE34JXx87GetB0xHYHjm7dJ96_9Bi2t339wEzQkaiDh38fC6SPhVDx0XH5XSIUlkizV-7tOyOZwCs61ZWPisKKCHs2SQO5uLmz8IrulsAX019xqkoVIWyrbkrEclzufeXuDXug_LuikQx1EadWusROtJDAMxC-MTZf8vIwDDmU4s-4-na';
   private requestHeader = new HttpHeaders().set('Content-Type', 'application/json').append('Authorization', this.access_token);
 
 
@@ -31,8 +32,8 @@ export class SpotifyService {
     return this._http.get<SpotifyAlbumsPerArtist>(this.albumsUrl + id + '/albums', {headers: this.requestHeader});
   }
 
-  getTracks(id: string) {
-    return this._http.get(this.tracksUrl + id + '/tracks', {headers: this.requestHeader});
+  getTracks(id: string): Observable<SpotifyTracksPerAlbum> {
+    return this._http.get<SpotifyTracksPerAlbum>(this.tracksUrl + id + '/tracks', {headers: this.requestHeader});
   }
 
 }

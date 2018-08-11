@@ -9,5 +9,17 @@ body{
   /*background-color: rgba(35, 155, 253, 0.07)*/
   background-image: url("https://images.pexels.com/photos/258847/pexels-photo-258847.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
   color: #ffffff;
+
+
+}
+.cdk-overlay-container .cdk-overlay-pane .mat-autocomplete-panel {
+  background-color: #022537;
+}
+.mat-option{
+  color: #a3a3a3;
+  /*border-bottom:1px solid #F8F8F8;*/
+}
+span .mat-option-text{
+  border: 1px solid red !important;
 }
 

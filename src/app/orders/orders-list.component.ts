@@ -40,18 +40,19 @@ export class OrdersListComponent implements OnInit {
 
   ngOnInit() {
     const artistName = JSON.parse(this.lsService.get('artist'));
-    // this.getData(artistName);
-    this.lastFmService.getArtists().subscribe(data => {
-      // console.log(data);
-    });
+    this.getSpotifyArtists(artistName);
+    // this.lastFmService.getArtists().subscribe(data => {
+    //   // console.log(data);
+    // });
   }
 
   getSpotifyArtists(artistName) {
-    console.log(artistName);
-
+    // console.log(artistName);
+    // this.lsService.set('artist', JSON.stringify(artistName));
     this.spotifyService.searchArtist(artistName).subscribe(artist => {
-
       this.spotifyArtists.artists = artist.artists;
+
+
       // console.log(this.spotifyArtists.artists.items);
     });
 
@@ -60,7 +61,7 @@ export class OrdersListComponent implements OnInit {
 
   getArtistAlbums(id) {
     this.spotifyService.searchAlbums(id).subscribe(albums => {
-      console.log(albums);
+      // console.log(albums);
       this.spotifyAlbumsPerArtist = albums;
       this.dataSource = new MatTableDataSource(this.spotifyAlbumsPerArtist.items);
       // this.lsService.set('artist', JSON.stringify(this.spotifyAlbumsPerArtist.items));

@@ -18,7 +18,7 @@ export class SignupComponent implements OnInit {
   }
 
   onSubmit(form) {
-    console.log(form);
+    // console.log(form);
     this._fbService.signupWithEmailPassword(form.email, form.password);
     this.router.navigate(['/']);
   }
