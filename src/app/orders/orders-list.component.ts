@@ -7,6 +7,8 @@ import {LocalStorageService} from 'angular-2-local-storage';
 import {Router} from '@angular/router';
 import {AlbumsDataService} from '../services/albums-data.service';
 import {SpotifyService} from '../services/spotify.service';
+import {SpotifyArtist} from '../models/spotify-artist';
+import {FormControl} from '@angular/forms';
 
 
 @Component({
@@ -16,6 +18,7 @@ import {SpotifyService} from '../services/spotify.service';
 })
 export class OrdersListComponent implements OnInit {
   albums = {} as any;
+  spotifyArtists = {}as  SpotifyArtist;
   artWorks;
   artWork64;
   artist: string;
@@ -28,7 +31,9 @@ export class OrdersListComponent implements OnInit {
   pageSizeOptions: number[] = [13, 50, 100];
   color: '#fff';
 
-  constructor(private lastFmService: LastFmService, private sanitazion: DomSanitizer, private lsService: LocalStorageService, private router: Router, private albumsService: AlbumsDataService,private spotifyService: SpotifyService) {
+  searchControl = new FormControl();
+
+  constructor(private lastFmService: LastFmService, private sanitazion: DomSanitizer, private lsService: LocalStorageService, private router: Router, private albumsService: AlbumsDataService, private spotifyService: SpotifyService) {
 
 
   }
@@ -36,13 +41,30 @@ export class OrdersListComponent implements OnInit {
 
   ngOnInit() {
     const artistName = JSON.parse(this.lsService.get('artist'));
-    this.getData(artistName);
+    // this.getData(artistName);
     this.lastFmService.getArtists().subscribe(data => {
-      console.log(data);
+      // console.log(data);
     });
   }
 
-  getData(artistName: string, ) {
+  getSpotifyArtists(artistName) {
+    console.log(artistName);
+
+      this.spotifyService.searchArtist(artistName).subscribe(artist => {
+
+        this.spotifyArtists.artists = artist.artists;
+        // console.log(this.spotifyArtists.artists.items);
+      });
+
+
+  }
+  getArtistAlbums(id){
+    this.spotifyService.searchAlbums(id).subscribe(albums=>{
+      console.log(albums);
+    })
+  }
+
+  getData(artistName: string,) {
 
     this.lastFmService.getAlbumsByArtist(artistName).subscribe(album => {
       this.albums = album.topalbums.album;
@@ -52,9 +74,9 @@ export class OrdersListComponent implements OnInit {
       this.length = this.albums.length;
       this.dataSource.paginator = this.paginator;
 
-      this.spotifyService.searchArtist(artistName).subscribe(artist=>{
-        console.log(artist.artists.items[0]);
-      });
+
+      // this.spotifyService.searchAlbums()
+
       // this.spotifyService.searchAlbums()
 
 
@@ -64,7 +86,7 @@ export class OrdersListComponent implements OnInit {
 
   onAlbumDetails(album: string, artist: string, mbid: string) {
     this.router.navigate([`/orders/albumInfo/${mbid}`], {queryParams: {artist: artist}});
-    console.log(album, artist);
+    // console.log(album, artist);
     this.lastFmService.getAlbumInfo(album, artist).subscribe(info => {
       this.albumsService.sendAlbums(info);
     });

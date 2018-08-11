@@ -1,68 +1,84 @@
-<div class="clr-row" >
+<div class="clr-row">
   <div class="text-center">
-    <mat-form-field class="example-full-width" >
-      <input matInput placeholder="Artist" [(ngModel)]="artist">
-    </mat-form-field>
-    <button type="button" class="btn btn-primary btn-sm" (click)="getData(artist)">Search
-    </button>
-      <!--<button class="" (click)="getData(artist)">Search</button>-->
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Artist" [(ngModel)]="artist"  [formControl]="searchControl" (input)=getSpotifyArtists(artist) [matAutocomplete]="auto">
+      </mat-form-field>
+
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let item of spotifyArtists.artists?.items" [value]="item.name" (onSelectionChange)="getArtistAlbums(item.id)">
+          {{ item.name }}
+        </mat-option>
+      </mat-autocomplete>
+    <!--<button type="button" class="btn btn-primary btn-sm" (click)="getData(item.id)">Search-->
+    <!--</button>-->
   </div>
+
+      <!--<div  *ngIf="spotifyArtists.artists?.items.length>0" [hidden]="!artist">-->
+      <!--<ul *ngFor="let item of spotifyArtists.artists.items" >-->
+      <!--<li>{{item.name}}</li>-->
+      <!--</ul>-->
+      <!--</div>-->
+
+
+
+      <!--<button class="" (click)="getData(artist)">Search</button>-->
+  <!--</div>-->
 
 </div>
 
 <mat-table  #table [dataSource]="dataSource"  *ngIf="dataSource;else spinner" matSort class="mat-elevation-z8">
-  <ng-container matColumnDef="index" >
-    <mat-header-cell  *matHeaderCellDef mat-sort-header > No </mat-header-cell>
-    <mat-cell  *matCellDef="let album;let i=index" (click)="onAlbumDetails(album.name,album.artist.name,album.mbid)">{{i+1}} </mat-cell>
-  </ng-container>
-  <!-- artwork Column -->
-  <ng-container matColumnDef="artwork">
-    <mat-header-cell  *matHeaderCellDef mat-sort-header> Artwork </mat-header-cell>
-    <mat-cell  *matCellDef="let album"><img [src]="album.image[0]['#text']" (click)="onAlbumDetails(album.name,album.artist.name,album.mbid)"> </mat-cell>
-  </ng-container>
+<ng-container matColumnDef="index" >
+<mat-header-cell  *matHeaderCellDef mat-sort-header > No </mat-header-cell>
+<mat-cell  *matCellDef="let album;let i=index" (click)="onAlbumDetails(album.name,album.artist.name,album.mbid)">{{i+1}} </mat-cell>
+</ng-container>
+<!-- artwork Column -->
+<ng-container matColumnDef="artwork">
+<mat-header-cell  *matHeaderCellDef mat-sort-header> Artwork </mat-header-cell>
+<mat-cell  *matCellDef="let album"><img [src]="album.image[0]['#text']" (click)="onAlbumDetails(album.name,album.artist.name,album.mbid)"> </mat-cell>
+</ng-container>
 <!--artist-->
-  <ng-container matColumnDef="artist">
-    <mat-header-cell  *matHeaderCellDef mat-sort-header> Artist </mat-header-cell>
-    <mat-cell  *matCellDef="let album" (click)="onAlbumDetails(album.name,album.artist.name,album.mbid)">{{album.artist.name}} </mat-cell>
-  </ng-container>
+<ng-container matColumnDef="artist">
+<mat-header-cell  *matHeaderCellDef mat-sort-header> Artist </mat-header-cell>
+<mat-cell  *matCellDef="let album" (click)="onAlbumDetails(album.name,album.artist.name,album.mbid)">{{album.artist.name}} </mat-cell>
+</ng-container>
 
-  <!-- name Column -->
-  <ng-container matColumnDef="name">
-    <mat-header-cell *matHeaderCellDef mat-sort-header> Album Name </mat-header-cell>
-    <mat-cell *matCellDef="let album" (click)="onAlbumDetails(album.name,album.artist.name,album.mbid)"> {{album.name}} </mat-cell>
-  </ng-container>
+<!-- name Column -->
+<ng-container matColumnDef="name">
+<mat-header-cell *matHeaderCellDef mat-sort-header> Album Name </mat-header-cell>
+<mat-cell *matCellDef="let album" (click)="onAlbumDetails(album.name,album.artist.name,album.mbid)"> {{album.name}} </mat-cell>
+</ng-container>
 
-  <!-- playcount Column -->
-  <ng-container matColumnDef="playcount">
-    <mat-header-cell *matHeaderCellDef mat-sort-header> Play Count </mat-header-cell>
-    <mat-cell *matCellDef="let album" (click)="onAlbumDetails(album.name,album.artist.name,album.mbid)"> {{album.playcount}} </mat-cell>
-  </ng-container>
+<!-- playcount Column -->
+<ng-container matColumnDef="playcount">
+<mat-header-cell *matHeaderCellDef mat-sort-header> Play Count </mat-header-cell>
+<mat-cell *matCellDef="let album" (click)="onAlbumDetails(album.name,album.artist.name,album.mbid)"> {{album.playcount}} </mat-cell>
+</ng-container>
 
-  <!--url Column-->
-  <ng-container matColumnDef="url">
-    <mat-header-cell *matHeaderCellDef mat-sort-header> Link on Last-FM </mat-header-cell>
-    <mat-cell *matCellDef="let album" (click)="onAlbumDetails(album.name,album.artist.name,album.mbid)"> {{album.url}} </mat-cell>
-  </ng-container>
+<!--url Column-->
+<ng-container matColumnDef="url">
+<mat-header-cell *matHeaderCellDef mat-sort-header> Link on Last-FM </mat-header-cell>
+<mat-cell *matCellDef="let album" (click)="onAlbumDetails(album.name,album.artist.name,album.mbid)"> {{album.url}} </mat-cell>
+</ng-container>
 
 
-  <mat-header-row  *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row  *matRowDef="let row; columns: displayedColumns;"></mat-row>
+<mat-header-row  *matHeaderRowDef="displayedColumns"></mat-header-row>
+<mat-row  *matRowDef="let row; columns: displayedColumns;"></mat-row>
 
 
 </mat-table>
 <mat-paginator [length]="length"
-                [hidden]="!dataSource"
-               [pageSize]="pageSize"
-               [pageSizeOptions]="pageSizeOptions"
-               (page)="pageEvent = $event">
+[hidden]="!dataSource"
+[pageSize]="pageSize"
+[pageSizeOptions]="pageSizeOptions"
+(page)="pageEvent = $event">
 
 </mat-paginator>
 
 <ng-template #spinner>
- <!--<span class="spinner">-->
-    <!--Loading...-->
+<!--<span class="spinner">-->
+<!--Loading...-->
 <!--</span>-->
-  <mat-spinner [diameter]="40" color="primary" ></mat-spinner>
+<mat-spinner [diameter]="40" color="primary" ></mat-spinner>
 </ng-template>
 
 
