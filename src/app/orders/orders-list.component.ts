@@ -89,12 +89,12 @@ export class OrdersListComponent implements OnInit {
   // }
 
 
-  onAlbumDetails(album: string, artist: string, mbid: string) {
-    this.router.navigate([`/orders/albumInfo/${mbid}`], {queryParams: {artist: artist}});
+  onAlbumDetails(id: string) {
+    this.router.navigate([`/orders/albumInfo/${id}`]);
     // console.log(album, artist);
-    this.lastFmService.getAlbumInfo(album, artist).subscribe(info => {
-      this.albumsService.sendAlbums(info);
-    });
+    // this.lastFmService.getAlbumInfo(album, artist).subscribe(info => {
+    //   this.albumsService.sendAlbums(info);
+    // });
   }
 
 }

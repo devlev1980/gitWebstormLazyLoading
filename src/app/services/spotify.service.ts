@@ -12,7 +12,7 @@ export class SpotifyService {
   private baseUrl = 'https://api.spotify.com/v1';
   private searchUrl = this.baseUrl + '/search?q=';
   private albumsUrl = this.baseUrl + '/artists/';
-  private albumPerArtistUrl = this.baseUrl + '/albums/';
+  private tracksUrl = this.baseUrl + '/albums/';
   private artistUrl: string;
 
   public access_token = 'Bearer BQD_-fIWMeeEfivWGZroDIqX6_0FrTlE7hHCs6hPrlPW-nTIWEPDjcZZD17YN8SeWkVBnyV-6qM2K-LQ7nUEPsbQZfYHSr9YjG9eQhD0GfyrkiXaklVcCYlKpWP04bOZXqN6LnKziLViBqMMjgDMiUhe-kDyPwTtv45JnMymJ84H0Rziih2W1GrqowOjstopmHORLyMZnUnGxob7z2AF-wDqvLA4F2mF0j0JFe8g-Co7xX3OnXPVsxZd6q68M_JFNOtNKyK3MNkJ';
@@ -31,8 +31,8 @@ export class SpotifyService {
     return this._http.get<SpotifyAlbumsPerArtist>(this.albumsUrl + id + '/albums', {headers: this.requestHeader});
   }
 
-  searchAlbum(id: string) {
-    return this._http.get(this.albumsUrl + id, {headers: this.requestHeader});
+  getTracks(id: string) {
+    return this._http.get(this.tracksUrl + id + '/tracks', {headers: this.requestHeader});
   }
 
 }
