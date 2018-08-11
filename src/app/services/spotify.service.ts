@@ -4,6 +4,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import {Observable} from 'rxjs/Observable';
 import {SpotifyArtist} from '../models/spotify-artist';
+import {SpotifyAlbumsPerArtist} from '../models/spotify-albums-per-artist';
 
 @Injectable()
 export class SpotifyService {
@@ -14,7 +15,7 @@ export class SpotifyService {
   private albumPerArtistUrl = this.baseUrl + '/albums/';
   private artistUrl: string;
 
-  public access_token = 'Bearer BQDQg1RZapGaswXePHgVBfw9UzL7SdJDiRM2h30KfxOTWBH1dpjI5tBBSiTKNaDBSPRw14czvfjqRrTYzeeexjf8KiCTFt4xkiOsBoduqihmiEl_AWT679Ld9YL4L6c49Jb_COvbbF2N5DhJq9b8aRjsQ3KFTYsaDK-sNVmNXXhS5O5Q4Qoms4XvWTITfjnWEXBohUljE-6Z6QCW-DI9JWozeMB4t64tRdpwNB7b6cwpJ_XRLtGDTyH_RRJzEcbOqvC-61a4KGwK'
+  public access_token = 'Bearer BQD_-fIWMeeEfivWGZroDIqX6_0FrTlE7hHCs6hPrlPW-nTIWEPDjcZZD17YN8SeWkVBnyV-6qM2K-LQ7nUEPsbQZfYHSr9YjG9eQhD0GfyrkiXaklVcCYlKpWP04bOZXqN6LnKziLViBqMMjgDMiUhe-kDyPwTtv45JnMymJ84H0Rziih2W1GrqowOjstopmHORLyMZnUnGxob7z2AF-wDqvLA4F2mF0j0JFe8g-Co7xX3OnXPVsxZd6q68M_JFNOtNKyK3MNkJ';
   private requestHeader = new HttpHeaders().set('Content-Type', 'application/json').append('Authorization', this.access_token);
 
 
@@ -26,8 +27,8 @@ export class SpotifyService {
 
   }
 
-  searchAlbums(id: string) {
-    return this._http.get(this.albumsUrl + id + '/albums', {headers: this.requestHeader});
+  searchAlbums(id: string): Observable<SpotifyAlbumsPerArtist> {
+    return this._http.get<SpotifyAlbumsPerArtist>(this.albumsUrl + id + '/albums', {headers: this.requestHeader});
   }
 
   searchAlbum(id: string) {

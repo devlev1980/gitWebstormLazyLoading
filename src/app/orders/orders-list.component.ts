@@ -9,6 +9,7 @@ import {AlbumsDataService} from '../services/albums-data.service';
 import {SpotifyService} from '../services/spotify.service';
 import {SpotifyArtist} from '../models/spotify-artist';
 import {FormControl} from '@angular/forms';
+import {SpotifyAlbumsPerArtist} from '../models/spotify-albums-per-artist';
 
 
 @Component({
@@ -19,17 +20,15 @@ import {FormControl} from '@angular/forms';
 export class OrdersListComponent implements OnInit {
   albums = {} as any;
   spotifyArtists = {}as  SpotifyArtist;
-  artWorks;
-  artWork64;
+  spotifyAlbumsPerArtist = {} as SpotifyAlbumsPerArtist;
   artist: string;
-  displayedColumns = ['index', 'artist', 'artwork', 'name', 'playcount', 'url'];
+  displayedColumns = ['index', 'artwork', 'album name', 'release date', 'total tracks'];
   dataSource;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   length;
   pageSize = 13;
   pageEvent: PageEvent;
   pageSizeOptions: number[] = [13, 50, 100];
-  color: '#fff';
 
   searchControl = new FormControl();
 
@@ -50,38 +49,44 @@ export class OrdersListComponent implements OnInit {
   getSpotifyArtists(artistName) {
     console.log(artistName);
 
-      this.spotifyService.searchArtist(artistName).subscribe(artist => {
+    this.spotifyService.searchArtist(artistName).subscribe(artist => {
 
-        this.spotifyArtists.artists = artist.artists;
-        // console.log(this.spotifyArtists.artists.items);
-      });
+      this.spotifyArtists.artists = artist.artists;
+      // console.log(this.spotifyArtists.artists.items);
+    });
 
 
   }
-  getArtistAlbums(id){
-    this.spotifyService.searchAlbums(id).subscribe(albums=>{
+
+  getArtistAlbums(id) {
+    this.spotifyService.searchAlbums(id).subscribe(albums => {
       console.log(albums);
-    })
-  }
-
-  getData(artistName: string,) {
-
-    this.lastFmService.getAlbumsByArtist(artistName).subscribe(album => {
-      this.albums = album.topalbums.album;
-      console.log(this.albums);
-      this.dataSource = new MatTableDataSource(this.albums);
-      this.lsService.set('artist', JSON.stringify(artistName));
+      this.spotifyAlbumsPerArtist = albums;
+      this.dataSource = new MatTableDataSource(this.spotifyAlbumsPerArtist.items);
+      // this.lsService.set('artist', JSON.stringify(this.spotifyAlbumsPerArtist.items));
       this.length = this.albums.length;
       this.dataSource.paginator = this.paginator;
-
-
-      // this.spotifyService.searchAlbums()
-
-      // this.spotifyService.searchAlbums()
-
-
     });
   }
+
+  // getData(artistName: string,) {
+
+  // this.lastFmService.getAlbumsByArtist(artistName).subscribe(album => {
+  //   this.albums = album.topalbums.album;
+  //   console.log(this.albums);
+  //   this.dataSource = new MatTableDataSource(this.albums);
+  //   this.lsService.set('artist', JSON.stringify(artistName));
+  //   this.length = this.albums.length;
+  //   this.dataSource.paginator = this.paginator;
+
+
+  // this.spotifyService.searchAlbums()
+
+  // this.spotifyService.searchAlbums()
+
+
+  // });
+  // }
 
 
   onAlbumDetails(album: string, artist: string, mbid: string) {
