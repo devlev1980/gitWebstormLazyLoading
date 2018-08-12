@@ -1,26 +1,40 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
-//
-// const spotifyAPItoken = 'BQCgZwlt2XKWwUVxk1lUJVgmP0Wflwh3YNC4CVGohiu13CMg6McXJv8ZO9pzHJjeHnVkPZi5AsBa31sjGvWim-vtLgcV-eUvLC_xb8OpkIK5szn7_DBnbMJtJfbNZREX4ozIDM3p1nyAN-LGn0NYmOcbyaog7g';
-
-const token = 'BQDOQK-CE12WXhEHO8ZOD8y0_noqbhZj57RHtOMTVwrAHKiZPOl_OSC2XNJRXZI73SEiaTmgljhsZoTlV0Da3Fi5bq0sYYQUgt5RA7neFhM6FTNrg3QV4FXEEOPKdgZUbGegQcj_PD4yrApm_a6ORghdAPDrvjr0ab_iIGHB7xQwhaBf8twy32cQIsvVACYduGPwzVVXd5sgcUJLUn7EoSsBVBCiuN1BDo1Dt8ZaQcF96eTbWm-EoOszW2Mz6ZZfISuGeUIfhIuO';
+import 'rxjs/add/operator/map';
+import {Observable} from 'rxjs/Observable';
+import {SpotifyArtist} from '../models/spotify-artist';
+import {SpotifyAlbumsPerArtist} from '../models/spotify-albums-per-artist';
+import {SpotifyTracksPerAlbum} from '../models/spotify-tracks-per-album';
 
 @Injectable()
 export class SpotifyService {
-  //
-  constructor(private _http: HttpClient) { }
-  //
-  getSpotifyArtistID(artist: string) {
-    return this._http.get( `https://api.spotify.com/v1/search?q=${artist}&type=track%2Cartist&market=US&limit=10&offset=5"-H"Accept: application/json" -H "Content-Type: application/json" -H "Authorization: Bearer${token}`);
+
+  private baseUrl = 'https://api.spotify.com/v1';
+  private searchUrl = this.baseUrl + '/search?q=';
+  private albumsUrl = this.baseUrl + '/artists/';
+  private tracksUrl = this.baseUrl + '/albums/';
+  private artistUrl: string;
+
+  public access_token = 'Bearer BQCZJzcbvWtcQClVNNe5IxiZVoTQAJcYdZC6RiNzkl0m3C1RneWeMn8QvTk_Z7GkdSK7ddu7N05sx99UghM956CdKma9fav0fgw9qTe0ohm3Iv6N9jM49jKPHrQk_SSk4ANk3Ty1t-of7NevZ84YwgCOdL-iwtbt0NyFtGtjLC2POv29ju6lFD8MCC58CLuxtqBVRMhnv4tGraWgEn0ZRZ3rPf_6uMxGgEqF1pGMXgIjKFFKvG384oJBSkwWVrokPKqVpIrQ6ja9';
+  private requestHeader = new HttpHeaders().set('Content-Type', 'application/json').append('Authorization', this.access_token);
+
+
+  constructor(private _http: HttpClient) {
+  }
+
+  searchArtist(str: string): Observable<SpotifyArtist> {
+    return this._http.get<SpotifyArtist>(this.searchUrl + str + '&type=artist', {headers: this.requestHeader});
 
   }
 
-  // getAccessToken(){
-  //   const scopes = ['user-read-private', 'user-read-email'];
-  //  return ' https://accounts.spotify.com/authorize?client_id=' + '423f6d52859745dba67864c626566d9b' +
-  //     '&scope=' + encodeURIComponent(scopes.join(' ')) +
-  //     '&response_type=token';
-  // }
+  searchAlbums(id: string): Observable<SpotifyAlbumsPerArtist> {
+    return this._http.get<SpotifyAlbumsPerArtist>(this.albumsUrl + id + '/albums', {headers: this.requestHeader});
+  }
+
+  getTracks(id: string): Observable<SpotifyTracksPerAlbum> {
+    return this._http.get<SpotifyTracksPerAlbum>(this.tracksUrl + id + '/tracks', {headers: this.requestHeader});
+  }
 
 }
+

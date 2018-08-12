@@ -27,3 +27,6 @@ export interface AlbumByArtist {
   };
 
 }
+export interface SpotifyArtist {
+  
+}

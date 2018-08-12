@@ -9,6 +9,7 @@ import {LocalStorageModule, LocalStorageService} from 'angular-2-local-storage';
 import { AlbumInfoComponent } from './album-info/album-info.component';
 import { MoreDataComponent } from './album-info/more-data/more-data.component';
 import {AlbumInfoService} from '../services/album-info.service';
+import {SpotifyService} from '../services/spotify.service';
 
 @NgModule({
   imports: [
@@ -19,7 +20,7 @@ import {AlbumInfoService} from '../services/album-info.service';
       storageType: 'localStorage'
     })
   ],
-  providers: [LastFmService, LocalStorageService],
+  providers: [LastFmService, LocalStorageService,SpotifyService],
   declarations: [OrdersListComponent, AlbumInfoComponent, MoreDataComponent]
 })
 export class OrdersModule {
