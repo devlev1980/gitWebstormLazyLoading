@@ -8,6 +8,8 @@ import {PerfectScrollbarDirective} from 'ngx-perfect-scrollbar';
 import {ActivatedRoute, ActivatedRouteSnapshot, Router} from '@angular/router';
 import {SpotifyService} from '../../services/spotify.service';
 import {SpotifyTracksPerAlbum} from '../../models/spotify-tracks-per-album';
+import {SpotifyAlbumsPerArtist} from '../../models/spotify-albums-per-artist';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-album-info',
@@ -18,33 +20,37 @@ export class AlbumInfoComponent implements OnInit {
   albumsInfo = {} as  AlbumInfo;
   albums: AlbumByArtist;
   spotifyTracksPerAlbum = {} as SpotifyTracksPerAlbum;
+  spotifyAlbumsPerArtist = {} as SpotifyAlbumsPerArtist;
   tracks = [];
   track;
   iframeUrl = 'https://open.spotify.com/embed';
+  iFrameFullLink = 'https://open.spotify.com/embed?uri=spotify:album:${{id}}';
   player;
+  artWork;
+  id;
   @ViewChildren(PerfectScrollbarDirective) scrollBars: QueryList<PerfectScrollbarDirective>;
 
   constructor(private albumsService: AlbumsDataService,
               private albumInfoService: AlbumInfoService,
               private router: Router,
               private route: ActivatedRoute,
-              private spotifyService: SpotifyService) {
+              private spotifyService: SpotifyService,
+              public sanitizer: DomSanitizer) {
   }
 
   ngOnInit() {
-    // this.albumsService.getAlbums().subscribe(info => {
-    //    console.log(info);
-    //   this.albumsInfo = info;
-    //   this.albumInfoService.setAlbumInfo(this.albumsInfo);
-    // this.tracks = info.album.tracks.track;
-    // });
+
+    this.albumsService.getAlbums().subscribe(albums => {
+      this.spotifyAlbumsPerArtist = albums;
+
+    });
 
     this.route.params.subscribe(params => {
       this.spotifyService.getTracks(params.id).subscribe(tracks => {
+        this.id = params.id;
         this.spotifyTracksPerAlbum = tracks;
         this.tracks = this.spotifyTracksPerAlbum.items;
-        console.log(this.tracks);
-        // this.player = `${this.iframeUrl}/?uri=spotify:album:${params.id}`;
+        this.iFrameFullLink = `https://open.spotify.com/embed?uri=spotify:album:${this.id}`;
       });
 
     });

@@ -1,7 +1,7 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {LastFmService} from '../services/last-fm.service';
 import {DomSanitizer} from '@angular/platform-browser';
-import {MatPaginator, MatTableDataSource, ThemePalette} from '@angular/material';
+import {MatPaginator, MatTableDataSource} from '@angular/material';
 import {PageEvent} from '@angular/material/typings/esm5/paginator';
 import {LocalStorageService} from 'angular-2-local-storage';
 import {Router} from '@angular/router';
@@ -10,6 +10,7 @@ import {SpotifyService} from '../services/spotify.service';
 import {SpotifyArtist} from '../models/spotify-artist';
 import {FormControl} from '@angular/forms';
 import {SpotifyAlbumsPerArtist} from '../models/spotify-albums-per-artist';
+import {MatSort} from '@angular/material';
 
 
 @Component({
@@ -25,6 +26,7 @@ export class OrdersListComponent implements OnInit {
   displayedColumns = ['index', 'artwork', 'album name', 'release date', 'total tracks'];
   dataSource;
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
   length;
   pageSize = 13;
   pageEvent: PageEvent;
@@ -44,17 +46,23 @@ export class OrdersListComponent implements OnInit {
 
 
   ngOnInit() {
-    const artistName = JSON.parse(this.lsService.get('artist'));
-    this.dataSource = new MatTableDataSource(artistName);
+    const previousTable = JSON.parse(this.lsService.get('artist'));
+    const previousArtistName = JSON.parse(this.lsService.get('artist-name'));
+    // console.log(previousTable);
+    this.dataSource = new MatTableDataSource(previousTable);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
 
-    this.getSpotifyArtists(artistName);
+    this.getSpotifyArtists(previousArtistName);
   }
 
   getSpotifyArtists(artistName) {
+    // this.lsService.get('artist-name');
     this.spotifyService.searchArtist(artistName).subscribe(artist => {
-      this.lsService.set('artist', JSON.stringify(artistName));
+
       this.spotifyArtists.artists = artist.artists;
       this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     });
 
 
@@ -62,14 +70,17 @@ export class OrdersListComponent implements OnInit {
 
   getArtistAlbums(id) {
     this.spotifyService.searchAlbums(id).subscribe(albums => {
+      console.log(albums);
       this.spotifyAlbumsPerArtist = albums;
       this.dataSource = new MatTableDataSource(this.spotifyAlbumsPerArtist.items);
       this.lsService.set('artist', JSON.stringify(this.spotifyAlbumsPerArtist.items));
       this.length = this.albums.length;
       this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+      this.albumsService.sendAlbums(this.spotifyAlbumsPerArtist);
+
     });
   }
-
 
 
   onAlbumDetails(id: string) {
