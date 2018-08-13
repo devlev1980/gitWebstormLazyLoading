@@ -16,7 +16,7 @@ export class SpotifyService {
   private tracksUrl = this.baseUrl + '/albums/';
   private artistUrl: string;
 
-  public access_token = 'Bearer  BQBixKFyuyvMaZUsjtXOdPxktZ65GzUomHK7OGkRuez4220vSgg-kr3QPntYMiEC3XYovFt1hUTYE232Jeavelx5gmEDuY869wchFzH-uOZu0NIJ4esbG68Oq1iDGZW8zEkuaCkkFrYfq2EAXAOBbDF_x_smnDXwFalesqwFpCqWN4a1nRkUoRSTcXRsecUsm8c87isT9qNh32aRb5DcMWe2MUYyyAMsIjPITwBkGnuFqSzev6vjcp_79eiKV_Xfs8-RBmCJF93X'
+  public access_token = 'Bearer  BQDTALvEZ8x8UmR9H7nwJSdYhfdhtchD3OiywwWh7Aa1V-YsPshT9KaBCCZArc1api5DYtCT_0YdgtVIfhWQzu2UnjXKDkgpbLL--AtU0XDfmj7O6OLK0dfHJiCMy6htEph-nm9MP3XslGyX33TzvmvVpfYyCknXmbXmMGpO6w55IpH2Lzm-18IrGjr2nKRfDaNG9qYfJv785zQv8oNS0RBafIxSqXT9WVhfevXSZKC5K3iQ1D4gNDhomMgrTfJEChTbuRbfRC1e'
   private requestHeader = new HttpHeaders().set('Content-Type', 'application/json').append('Authorization', this.access_token);
 
 

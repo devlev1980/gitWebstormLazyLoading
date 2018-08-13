@@ -7,7 +7,7 @@
 
     <mat-autocomplete #auto="matAutocomplete" [hidden]="!artist">
       <mat-option *ngFor="let item of spotifyArtists.artists?.items" [value]="item.name"
-                  (onSelectionChange)="getArtistAlbums(item.id)">
+                  (onSelectionChange)="getArtistAlbums(item.id,item)">
         {{ item.name }}
       </mat-option>
     </mat-autocomplete>
@@ -47,7 +47,7 @@
   <ng-container matColumnDef="rating">
     <mat-header-cell *matHeaderCellDef mat-sort-header> Rating</mat-header-cell>
     <mat-cell *matCellDef="let album" (click)="onAlbumDetails(album.id)">
-      <bar-rating  [max]="5" [theme]="'stars'" [ngModel]="rate"></bar-rating>
+      <bar-rating  [max]="5" [theme]="'stars'"  id="rate" (rateChange)="onRateChange($event,album)"></bar-rating>
     </mat-cell>
   </ng-container>
 

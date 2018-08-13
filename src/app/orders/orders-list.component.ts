@@ -28,10 +28,19 @@ export class OrdersListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   length;
-  pageSize = 13;
+  pageSize = 10;
   pageEvent: PageEvent;
-  pageSizeOptions: number[] = [13, 50, 100];
-  rate:any;
+  pageSizeOptions: number[] = [10, 50, 100];
+  rate: number;
+  albumWithRaiting: any;
+
+  get starRating() {
+    return this.rate;
+  }
+
+  set starRating(rate) {
+    this.rate = rate;
+  }
 
   searchControl = new FormControl();
 
@@ -48,8 +57,10 @@ export class OrdersListComponent implements OnInit {
 
   ngOnInit() {
     const previousTable = JSON.parse(this.lsService.get('artist'));
+    // previousTable.push(this.albumWithRaiting);
+    console.log(previousTable);
+
     const previousArtistName = JSON.parse(this.lsService.get('artist-name'));
-    // console.log(previousTable);
     this.dataSource = new MatTableDataSource(previousTable);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
@@ -58,7 +69,6 @@ export class OrdersListComponent implements OnInit {
   }
 
   getSpotifyArtists(artistName) {
-    // this.lsService.get('artist-name');
     this.spotifyService.searchArtist(artistName).subscribe(artist => {
 
       this.spotifyArtists.artists = artist.artists;
@@ -69,16 +79,21 @@ export class OrdersListComponent implements OnInit {
 
   }
 
-  getArtistAlbums(id) {
+  getArtistAlbums(id, album) {
     this.spotifyService.searchAlbums(id).subscribe(albums => {
-      console.log(albums);
       this.spotifyAlbumsPerArtist = albums;
+
+
       this.dataSource = new MatTableDataSource(this.spotifyAlbumsPerArtist.items);
+
+      const albumId = this.dataSource.findIndex(item => item.id === album.id);
+
+      // console.log(album);
       this.lsService.set('artist', JSON.stringify(this.spotifyAlbumsPerArtist.items));
+
       this.length = this.albums.length;
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-      this.albumsService.sendAlbums(this.spotifyAlbumsPerArtist);
 
     });
   }
@@ -90,6 +105,21 @@ export class OrdersListComponent implements OnInit {
     // this.lastFmService.getAlbumInfo(album, artist).subscribe(info => {
     //   this.albumsService.sendAlbums(info);
     // });
+  }
+
+  onRateChange(rate, album) {
+    // console.log(rate, album);
+    album.rating = rate;
+
+    this.albumWithRaiting = album;
+    console.log(this.albumWithRaiting);
+    // let albumId = this.spotifyAlbumsPerArtist.items.findIndex(item => item.id === album.id);
+    // console.log(albumId);
+
+
+    // this.lsService.set('artist', JSON.stringify(this.spotifyAlbumsPerArtist.items));
+
+
   }
 
 }
