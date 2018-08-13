@@ -11,6 +11,8 @@ import {MoreDataComponent} from './album-info/more-data/more-data.component';
 import {AlbumInfoService} from '../services/album-info.service';
 import {SpotifyService} from '../services/spotify.service';
 import {AngularBillboardModule} from 'angular-billboard';
+import {StarRatingModule} from 'angular-star-rating';
+import {BarRatingModule} from 'ngx-bar-rating';
 
 @NgModule({
   imports: [
@@ -20,7 +22,7 @@ import {AngularBillboardModule} from 'angular-billboard';
     LocalStorageModule.withConfig({
       storageType: 'localStorage'
     }),
-
+    BarRatingModule
   ],
   providers: [LastFmService, LocalStorageService, SpotifyService],
   declarations: [OrdersListComponent, AlbumInfoComponent, MoreDataComponent]

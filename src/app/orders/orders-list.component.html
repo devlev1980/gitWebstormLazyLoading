@@ -40,9 +40,17 @@
 
   <!-- playcount Column -->
   <ng-container matColumnDef="total tracks">
-    <mat-header-cell *matHeaderCellDef mat-sort-header> Total Tracks</mat-header-cell>
-    <mat-cell *matCellDef="let album" (click)="onAlbumDetails(album.id)"> {{album.total_tracks}}</mat-cell>
+  <mat-header-cell *matHeaderCellDef mat-sort-header> Total Tracks</mat-header-cell>
+  <mat-cell *matCellDef="let album" (click)="onAlbumDetails(album.id)"> {{album.total_tracks}}</mat-cell>
+</ng-container>
+
+  <ng-container matColumnDef="rating">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Rating</mat-header-cell>
+    <mat-cell *matCellDef="let album" (click)="onAlbumDetails(album.id)">
+      <bar-rating  [max]="5" [theme]="'stars'" [ngModel]="rate"></bar-rating>
+    </mat-cell>
   </ng-container>
+
 
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
@@ -57,9 +65,11 @@
 
 </mat-paginator>
 
+
 <ng-template #spinner>
 
   <mat-spinner [diameter]="40" color="primary"></mat-spinner>
 </ng-template>
+
 
 

@@ -23,7 +23,7 @@ export class OrdersListComponent implements OnInit {
   spotifyArtists = {}as  SpotifyArtist;
   spotifyAlbumsPerArtist = {} as SpotifyAlbumsPerArtist;
   artist: string;
-  displayedColumns = ['index', 'artwork', 'album name', 'release date', 'total tracks'];
+  displayedColumns = ['index', 'artwork', 'album name', 'release date', 'total tracks', 'rating'];
   dataSource;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -31,6 +31,7 @@ export class OrdersListComponent implements OnInit {
   pageSize = 13;
   pageEvent: PageEvent;
   pageSizeOptions: number[] = [13, 50, 100];
+  rate:any;
 
   searchControl = new FormControl();
 

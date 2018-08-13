@@ -1,22 +1,21 @@
 
-
 mat-table, mat-paginator {
   background-color: #002538;
   color: #B8C1C6;
 
 }
-.mat-table{
-  margin-top:1rem;
+
+.mat-table {
+  margin-top: 1rem;
 }
 
 mat-cell, mat-header-cell, mat-paginator {
   color: #B8C1C6;
-  &:hover{
+  &:hover {
     cursor: pointer;
   }
 
 }
-
 
 mat-header-row {
   border-bottom-color: #757e83;
@@ -26,34 +25,45 @@ mat-row {
   border-bottom-color: #757e83;
   border-top-color: #757e83;
 }
-.mat-paginator::ng-deep{
+
+.mat-paginator::ng-deep {
   display: flex;
   justify-content: space-around;
 
-  .mat-select-value,.mat-select-arrow{
-    color: #B8C1C6 ;
+  .mat-select-value, .mat-select-arrow {
+    color: #B8C1C6;
   }
-  .mat-icon-button[disabled]{
+  .mat-icon-button[disabled] {
     color: #545e63;
   }
 
 }
-.btn-primary{
+
+.btn-primary {
   background-color: #002538;
   border: none;
   box-shadow: none;
   margin-left: 1rem;
 
 }
-.btn-primary:active{
+
+.btn-primary:active {
   box-shadow: none !important;
 }
-mat-spinner{
- margin: 15% 47% auto;
- 
+
+mat-spinner {
+  margin: 15% 47% auto;
+
 }
-img{
+
+img {
   width: 30px;
+}
+
+bar-rating ::ng-deep{
+  .br-unit {
+    width: 11px
+  }
 }
 
 
