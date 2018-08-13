@@ -56,24 +56,21 @@ export class OrdersListComponent implements OnInit {
 
 
   ngOnInit() {
-    const previousTable = JSON.parse(this.lsService.get('artist'));
-    // previousTable.push(this.albumWithRaiting);
-    console.log(previousTable);
+    const artistName = JSON.parse(this.lsService.get('artist'));
+    this.dataSource = new MatTableDataSource(artistName);
 
-    const previousArtistName = JSON.parse(this.lsService.get('artist-name'));
-    this.dataSource = new MatTableDataSource(previousTable);
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-
-    this.getSpotifyArtists(previousArtistName);
+    this.getSpotifyArtists(artistName);
   }
 
   getSpotifyArtists(artistName) {
     this.spotifyService.searchArtist(artistName).subscribe(artist => {
-
+      // this.lsService.set('artist', JSON.stringify(artist));
       this.spotifyArtists.artists = artist.artists;
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+
+
+
     });
 
 
@@ -86,7 +83,7 @@ export class OrdersListComponent implements OnInit {
 
       this.dataSource = new MatTableDataSource(this.spotifyAlbumsPerArtist.items);
 
-      const albumId = this.dataSource.findIndex(item => item.id === album.id);
+      // const albumId = this.dataSource.findIndex(item => item.id === album.id);
 
       // console.log(album);
       this.lsService.set('artist', JSON.stringify(this.spotifyAlbumsPerArtist.items));
@@ -112,12 +109,18 @@ export class OrdersListComponent implements OnInit {
     album.rating = rate;
 
     this.albumWithRaiting = album;
-    console.log(this.albumWithRaiting);
-    // let albumId = this.spotifyAlbumsPerArtist.items.findIndex(item => item.id === album.id);
-    // console.log(albumId);
+    // console.log(this.albumWithRaiting);
+    const albumInLS = JSON.parse(this.lsService.get('artist'));
+    // console.log(albumInLS);
 
+    let albumId = albumInLS.findIndex(item => item.id === album.id);
+    if (albumId === 0) {
+      albumInLS.push(album);
+      this.lsService.set('artist', JSON.stringify(albumInLS));
+      console.log(albumInLS);
 
-    // this.lsService.set('artist', JSON.stringify(this.spotifyAlbumsPerArtist.items));
+    }
+    // console.log(albumInLS);
 
 
   }
