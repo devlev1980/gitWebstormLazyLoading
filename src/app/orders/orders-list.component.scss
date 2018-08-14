@@ -2,11 +2,18 @@
 mat-table, mat-paginator {
   background-color: #002538;
   color: #B8C1C6;
-
+  //width: 80vw;
+  margin-left: 3rem;
+}
+.row{
+  width: 100%;
 }
 
 .mat-table {
-  margin-top: 1rem;
+  //margin-top: 1rem;
+}
+mat-paginator{
+  //margin-left: 474px;
 }
 
 mat-cell, mat-header-cell, mat-paginator {
@@ -29,6 +36,8 @@ mat-row {
 .mat-paginator::ng-deep {
   display: flex;
   justify-content: space-around;
+  //position: fixed;
+  //bottom:1.7rem;
 
   .mat-select-value, .mat-select-arrow {
     color: #B8C1C6;
@@ -65,6 +74,28 @@ bar-rating ::ng-deep{
     width: 11px
   }
 }
+.sidenav{
+  background-color: #002538;
+
+  height: 84.1vh;
+  margin: 0;
+   border-right: none;
+  text-align: center;
+
+  .nav-link{
+    color: #758792;
+    &.nav-link.selected{
+      color:#FAFAFA;
+    }
+    &.nav-link.favorite{
+      font-size:18px;
+    }
+  }
+
+
+  //border: 1px solid #757e83
+}
+
 
 
 

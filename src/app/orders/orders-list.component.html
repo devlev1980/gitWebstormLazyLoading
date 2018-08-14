@@ -14,41 +14,64 @@
   </div>
 
 </div>
+<div class="row">
 
-<mat-table #table [dataSource]="dataSource" *ngIf="dataSource;else spinner" matSort class="mat-elevation-z8">
+  <div class="col-md-1">
+
+    <nav class="sidenav ">
+      <section class="sidenav-content">
+        <section class="nav-group" >
+          <a class="nav-link favorite"  (click)="onFavoriteAlbum()" >
+            My Favotite Albums
+          </a>
+          <a class="nav-link" >
+            My Favotite Songs
+          </a>
+        </section>
+        <section class="nav-group">
+        </section>
+        <mat-divider></mat-divider>
+      </section>
+      <div class="spacer"></div>
+
+      </nav>
+  </div>
+
+<div class="col-md-11">
+  <mat-table #table [dataSource]="dataSource" *ngIf="dataSource;else spinner" matSort class="mat-elevation-z8">
   <ng-container matColumnDef="index">
-    <mat-header-cell *matHeaderCellDef mat-sort-header> No</mat-header-cell>
-    <mat-cell *matCellDef="let album;let i=index" (click)="onAlbumDetails(album.id)">{{i+1}}</mat-cell>
+  <mat-header-cell *matHeaderCellDef mat-sort-header> No</mat-header-cell>
+  <mat-cell *matCellDef="let album;let i=index" (click)="onAlbumDetails(album.id)">{{i+1}}</mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="artwork">
-    <mat-header-cell *matHeaderCellDef mat-sort-header> Artwork</mat-header-cell>
-    <mat-cell *matCellDef="let album" (click)="onAlbumDetails(album.id)"><img src="{{album.images[0].url}}"
-                                                                              alt="artwork"></mat-cell>
+  <mat-header-cell *matHeaderCellDef mat-sort-header> Artwork</mat-header-cell>
+  <mat-cell *matCellDef="let album" (click)="onAlbumDetails(album.id)"><img src="{{album.images[0].url}}"
+  alt="artwork"></mat-cell>
   </ng-container>
   <!--artist-->
   <ng-container matColumnDef="album name">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Album Name</mat-header-cell>
-    <mat-cell *matCellDef="let album" (click)="onAlbumDetails(album.id)">{{album.name}}</mat-cell>
+  <mat-header-cell *matHeaderCellDef mat-sort-header>Album Name</mat-header-cell>
+  <mat-cell *matCellDef="let album" (click)="onAlbumDetails(album.id)">{{album.name}}</mat-cell>
   </ng-container>
 
   <!-- name Column -->
   <ng-container matColumnDef="release date">
-    <mat-header-cell *matHeaderCellDef mat-sort-header> Release Date</mat-header-cell>
-    <mat-cell *matCellDef="let album" (click)="onAlbumDetails(album.id)"> {{album.release_date}}</mat-cell>
+  <mat-header-cell *matHeaderCellDef mat-sort-header> Release Date</mat-header-cell>
+  <mat-cell *matCellDef="let album" (click)="onAlbumDetails(album.id)"> {{album.release_date}}</mat-cell>
   </ng-container>
 
   <!-- playcount Column -->
   <ng-container matColumnDef="total tracks">
   <mat-header-cell *matHeaderCellDef mat-sort-header> Total Tracks</mat-header-cell>
   <mat-cell *matCellDef="let album" (click)="onAlbumDetails(album.id)"> {{album.total_tracks}}</mat-cell>
-</ng-container>
+  </ng-container>
 
   <ng-container matColumnDef="rating">
-    <mat-header-cell *matHeaderCellDef mat-sort-header> Rating</mat-header-cell>
-    <mat-cell *matCellDef="let album" (click)="onAlbumDetails(album.id)">
-      <bar-rating  [max]="5" [theme]="'stars'"  id="rate" (rateChange)="onRateChange($event,album)"></bar-rating>
-    </mat-cell>
+  <mat-header-cell *matHeaderCellDef mat-sort-header> Rating</mat-header-cell>
+  <mat-cell *matCellDef="let album" (click)="onAlbumDetails(album.id)">
+  <bar-rating  [max]="5" [theme]="'stars'" [(rate)]="album.rate"  id="rate" (rateChange)="onRateChange(album)"></bar-rating>
+  </mat-cell>
   </ng-container>
 
 
@@ -56,20 +79,44 @@
   <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 
 
-</mat-table>
-<mat-paginator [length]="length"
-               [hidden]="!dataSource"
-               [pageSize]="pageSize"
-               [pageSizeOptions]="pageSizeOptions"
-               (page)="pageEvent = $event">
+  </mat-table>
 
-</mat-paginator>
+  <mat-paginator [length]="length"
+                 [hidden]="!dataSource"
+                 [pageSize]="pageSize"
+                 [pageSizeOptions]="pageSizeOptions"
+                 (page)="pageEvent = $event">
+  </mat-paginator>
+
+</div>
+
+
+
+
+</div>
 
 
 <ng-template #spinner>
 
   <mat-spinner [diameter]="40" color="primary"></mat-spinner>
 </ng-template>
+<!--</div>-->
+
+<!--<nav class="sidenav col-md-1" >-->
+<!--<section class="sidenav-content">-->
+<!--<section class="nav-group">-->
+<!--<a class="nav-link" >-->
+<!--My Favotite Albums-->
+<!--</a>-->
+<!--</section>-->
+<!--<section class="nav-group">-->
+<!--</section>-->
+<!--<mat-divider></mat-divider>-->
+<!--</section>-->
+<!--<div class="spacer"></div>-->
+
+<!--</nav>-->
+
 
 
 

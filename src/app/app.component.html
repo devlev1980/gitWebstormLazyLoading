@@ -5,9 +5,9 @@
     <!--...-->
   <!--</div>-->
   <div class="header-nav">
-    <span class=" nav-link nav-text" *ngIf="user|async as user">Hello {{user.email}}</span>
+    <span class=" nav-link nav-text" routerLink="/home" *ngIf="user|async as user" >Hello {{user.email}}</span>
     <a routerLink="/customers"   class="nav-link nav-text" *ngIf="false">Customers</a>
-    <a routerLink="/orders"  class="nav-link nav-text">Search Artist</a>
+    <a routerLink="/orders"  class="nav-link nav-text" >Search Artist</a>
     <a routerLink="/charts"  class="nav-link nav-text">Top Artist Charts</a>
 
   </div>
@@ -24,5 +24,12 @@
 </header>
 
 
+
+
 <router-outlet></router-outlet>
+<div class="row">
+  <div class="clr-footer col-md-12">
+
+  </div>
+</div>
 

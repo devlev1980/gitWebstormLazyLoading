@@ -50,5 +50,9 @@
     max-width: 20.33333%;
   }
 }
+svg::ng-deep{
+  display: none;
+
+}
 
 

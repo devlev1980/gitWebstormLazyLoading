@@ -12,6 +12,7 @@ const routes: Routes = [
     component: AlbumInfoComponent,
     pathMatch: 'full',
   },
+
 ];
 
 @NgModule({

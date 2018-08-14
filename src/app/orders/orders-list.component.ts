@@ -11,6 +11,7 @@ import {SpotifyArtist} from '../models/spotify-artist';
 import {FormControl} from '@angular/forms';
 import {SpotifyAlbumsPerArtist} from '../models/spotify-albums-per-artist';
 import {MatSort} from '@angular/material';
+import {AlbumByArtist} from '../models/album';
 
 
 @Component({
@@ -28,11 +29,13 @@ export class OrdersListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   length;
-  pageSize = 10;
+  pageSize = 12;
   pageEvent: PageEvent;
-  pageSizeOptions: number[] = [10, 50, 100];
+  pageSizeOptions: number[] = [12];
   rate: number;
-  albumWithRaiting: any;
+  albumWithRaiting: AlbumByArtist;
+  myFavoriteAlbum = [];
+  wasClicked = false;
 
   get starRating() {
     return this.rate;
@@ -58,8 +61,9 @@ export class OrdersListComponent implements OnInit {
   ngOnInit() {
     const artistName = JSON.parse(this.lsService.get('artist'));
     this.dataSource = new MatTableDataSource(artistName);
-
+    this.dataSource.paginator = this.paginator;
     this.getSpotifyArtists(artistName);
+    // console.log(this.myFavoriteAlbum);
   }
 
   getSpotifyArtists(artistName) {
@@ -68,7 +72,7 @@ export class OrdersListComponent implements OnInit {
       this.spotifyArtists.artists = artist.artists;
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-
+      // console.log(this.dataSource);
 
 
     });
@@ -83,9 +87,6 @@ export class OrdersListComponent implements OnInit {
 
       this.dataSource = new MatTableDataSource(this.spotifyAlbumsPerArtist.items);
 
-      // const albumId = this.dataSource.findIndex(item => item.id === album.id);
-
-      // console.log(album);
       this.lsService.set('artist', JSON.stringify(this.spotifyAlbumsPerArtist.items));
 
       this.length = this.albums.length;
@@ -98,31 +99,38 @@ export class OrdersListComponent implements OnInit {
 
   onAlbumDetails(id: string) {
     this.router.navigate([`/orders/albumInfo/${id}`]);
-    // console.log(album, artist);
-    // this.lastFmService.getAlbumInfo(album, artist).subscribe(info => {
-    //   this.albumsService.sendAlbums(info);
-    // });
+
   }
 
-  onRateChange(rate, album) {
-    // console.log(rate, album);
-    album.rating = rate;
+  onRateChange(album) {
+    this.myFavoriteAlbum.push(album);
+    this.lsService.set('favoriteAlbums', JSON.stringify(this.myFavoriteAlbum));
 
-    this.albumWithRaiting = album;
-    // console.log(this.albumWithRaiting);
+
+    // console.log(album);
     const albumInLS = JSON.parse(this.lsService.get('artist'));
-    // console.log(albumInLS);
 
     let albumId = albumInLS.findIndex(item => item.id === album.id);
-    if (albumId === 0) {
-      albumInLS.push(album);
+    if (albumId >= 0) {
+      albumInLS.splice(albumId, 1);
+      albumInLS.unshift(album);
       this.lsService.set('artist', JSON.stringify(albumInLS));
-      console.log(albumInLS);
-
     }
+
     // console.log(albumInLS);
 
 
   }
 
+  onFavoriteAlbum() {
+    this.myFavoriteAlbum = JSON.parse(this.lsService.get('favoriteAlbums'));
+
+    console.log(this.myFavoriteAlbum);
+    this.dataSource = new MatTableDataSource(this.myFavoriteAlbum);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+
+
 }
+

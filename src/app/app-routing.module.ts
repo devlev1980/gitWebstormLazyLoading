@@ -25,6 +25,9 @@ const routes: Routes = [
     path: 'orders/albumInfo', loadChildren: 'app/orders/orders.module#OrdersModule'
   },
   {
+    path: 'orders/favoriteAlbums', loadChildren: 'app/orders/orders.module#OrdersModule'
+  },
+  {
     path: 'charts', loadChildren: 'app/charts/charts.module#ChartsModule'
   },
   {

@@ -8,10 +8,7 @@ import {SharedModule} from '../shared.module';
 import {LocalStorageModule, LocalStorageService} from 'angular-2-local-storage';
 import {AlbumInfoComponent} from './album-info/album-info.component';
 import {MoreDataComponent} from './album-info/more-data/more-data.component';
-import {AlbumInfoService} from '../services/album-info.service';
 import {SpotifyService} from '../services/spotify.service';
-import {AngularBillboardModule} from 'angular-billboard';
-import {StarRatingModule} from 'angular-star-rating';
 import {BarRatingModule} from 'ngx-bar-rating';
 
 @NgModule({
