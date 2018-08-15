@@ -6,9 +6,9 @@
     </mat-form-field>
 
     <mat-autocomplete #auto="matAutocomplete" [hidden]="!artist">
-      <mat-option *ngFor="let item of spotifyArtists.artists?.items" [value]="item.name"
-                  (onSelectionChange)="getArtistAlbums(item.id,item)">
-        {{ item.name }}
+      <mat-option *ngFor="let artist of spotifyArtists.results" [value]="artist.artistName"
+                  (onSelectionChange)="getArtistAlbums(artist.artistId,artist)">
+        {{ artist.artistName }}
       </mat-option>
     </mat-autocomplete>
   </div>
@@ -21,11 +21,12 @@
     <nav class="sidenav ">
       <section class="sidenav-content">
         <section class="nav-group" >
+
           <a class="nav-link favorite"  (click)="onFavoriteAlbum()" >
-            My Favotite Albums
+             <span class="spotify-album" matTooltip="Favorite Album"></span>
           </a>
-          <a class="nav-link" >
-            My Favotite Songs
+          <a class="nav-link favorite"  (click)="onFavoriteAlbum()" >
+            <span class="spotify-Song" matTooltip="Favorite Song"></span>
           </a>
         </section>
         <section class="nav-group">

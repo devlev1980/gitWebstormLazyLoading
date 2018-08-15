@@ -76,24 +76,51 @@ bar-rating ::ng-deep{
 }
 .sidenav{
   background-color: #002538;
-
+  min-width: 5rem;
   height: 84.1vh;
-  margin: 0;
+  margin-left:-50px;
    border-right: none;
-  text-align: center;
+  position: relative;
+  transition: margin-left .5s ease-out ;
+  &:hover{
+
+    margin-left: -40px;
+  }
+  //&:after{
+  //  content: 'menu';
+  //  width: 10px;
+  //  height: 10px;
+  //  position: absolute;
+  //  top:-25px;
+  //  font-size: 25px;
+  //  right:-10px;
+  //
+  //}
 
   .nav-link{
     color: #758792;
+    margin-bottom: 1rem;
+    margin-left: 0.8rem;
+    text-align: center;
     &.nav-link.selected{
       color:#FAFAFA;
     }
     &.nav-link.favorite{
       font-size:18px;
+      &:hover{
+        color: #fff;
+      }
     }
   }
 
 
+
   //border: 1px solid #757e83
+}
+.spotify-album,.spotify-Song{
+  color: #b483ff;
+  font-size: 24px;
+
 }
 
 

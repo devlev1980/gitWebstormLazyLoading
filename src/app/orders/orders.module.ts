@@ -10,6 +10,7 @@ import {AlbumInfoComponent} from './album-info/album-info.component';
 import {MoreDataComponent} from './album-info/more-data/more-data.component';
 import {SpotifyService} from '../services/spotify.service';
 import {BarRatingModule} from 'ngx-bar-rating';
+import {ItunesService} from '../services/itunes.service';
 
 @NgModule({
   imports: [
@@ -21,7 +22,7 @@ import {BarRatingModule} from 'ngx-bar-rating';
     }),
     BarRatingModule
   ],
-  providers: [LastFmService, LocalStorageService, SpotifyService],
+  providers: [LastFmService, LocalStorageService, SpotifyService,ItunesService],
   declarations: [OrdersListComponent, AlbumInfoComponent, MoreDataComponent]
 })
 export class OrdersModule {

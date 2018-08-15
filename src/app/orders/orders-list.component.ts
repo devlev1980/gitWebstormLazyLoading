@@ -12,6 +12,8 @@ import {FormControl} from '@angular/forms';
 import {SpotifyAlbumsPerArtist} from '../models/spotify-albums-per-artist';
 import {MatSort} from '@angular/material';
 import {AlbumByArtist} from '../models/album';
+import {ItunesService} from '../services/itunes.service';
+import {ItunesArtist} from '../models/itunes-artist';
 
 
 @Component({
@@ -21,7 +23,7 @@ import {AlbumByArtist} from '../models/album';
 })
 export class OrdersListComponent implements OnInit {
   albums = {} as any;
-  spotifyArtists = {}as  SpotifyArtist;
+  spotifyArtists = {}as  ItunesArtist;
   spotifyAlbumsPerArtist = {} as SpotifyAlbumsPerArtist;
   artist: string;
   displayedColumns = ['index', 'artwork', 'album name', 'release date', 'total tracks', 'rating'];
@@ -52,29 +54,38 @@ export class OrdersListComponent implements OnInit {
               private lsService: LocalStorageService,
               private router: Router,
               private albumsService: AlbumsDataService,
-              private spotifyService: SpotifyService) {
+              private spotifyService: SpotifyService,
+              private itunesService: ItunesService) {
 
 
   }
 
 
   ngOnInit() {
-    const artistName = JSON.parse(this.lsService.get('artist'));
-    this.dataSource = new MatTableDataSource(artistName);
-    this.dataSource.paginator = this.paginator;
-    this.getSpotifyArtists(artistName);
+    // const artistName = JSON.parse(this.lsService.get('artist'));
+    // this.dataSource = new MatTableDataSource(artistName);
+    // this.dataSource.paginator = this.paginator;
+    // this.getSpotifyArtists(artistName);
     // console.log(this.myFavoriteAlbum);
   }
 
-  getSpotifyArtists(artistName) {
-    this.spotifyService.searchArtist(artistName).subscribe(artist => {
-      // this.lsService.set('artist', JSON.stringify(artist));
-      this.spotifyArtists.artists = artist.artists;
+  getSpotifyArtists(artistName: string) {
+    // this.spotifyService.searchArtist(artistName).subscribe(artist => {
+    //   // this.lsService.set('artist', JSON.stringify(artist));
+    //   this.spotifyArtists.artists = artist.artists;
+    //   this.dataSource.paginator = this.paginator;
+    //   this.dataSource.sort = this.sort;
+    //   // console.log(this.dataSource);
+    //
+    //
+    // });
+    this.itunesService.searchArtist(artistName).subscribe(artist => {
+      console.log(artist.results);
+      this.spotifyArtists.results = artist.results;
       this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-      // console.log(this.dataSource);
-
-
+      //   this.dataSource.sort = this.sort;
+      // this.dataSource.paginator = this.paginator;
+      // this.dataSource.sort = this.sort;
     });
 
 
