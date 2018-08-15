@@ -29,9 +29,9 @@ export class OrdersListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   length;
-  pageSize = 12;
+  pageSize = 10;
   pageEvent: PageEvent;
-  pageSizeOptions: number[] = [12];
+  pageSizeOptions: number[] = [10];
   rate: number;
   albumWithRaiting: AlbumByArtist;
   myFavoriteAlbum = [];
