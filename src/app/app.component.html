@@ -1,5 +1,35 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<button routerLink="/customers">Customers</button>
-<button routerLink="/orders">Orders</button>
+
+
+<header class="header-6">
+  <!--<div class="branding">-->
+    <!--...-->
+  <!--</div>-->
+  <div class="header-nav">
+    <span class=" nav-link nav-text" routerLink="/home" *ngIf="user|async as user" >Hello {{user.email}}</span>
+    <a routerLink="/customers"   class="nav-link nav-text" *ngIf="false">Customers</a>
+    <a routerLink="/orders"  class="nav-link nav-text" >Search Artist</a>
+    <a routerLink="/charts"  class="nav-link nav-text">Top Artist Charts</a>
+
+  </div>
+  <div class="header-actions" *ngIf="user|async as user;else logIn">
+    <a  class="nav-link nav-text" routerLink="/login" (click)="logOutFromGoogle()">Logout</a>
+      <a  class="nav-link nav-text" routerLink="/signup">Signup</a>
+  </div>
+  <ng-template #logIn>
+    <div class="header-actions" >
+      <a  class="nav-link nav-text" routerLink="/login" >Login</a>
+      <a  class="nav-link nav-text" routerLink="/signup">Signup</a>
+    </div>
+  </ng-template>
+</header>
+
+
+
 
 <router-outlet></router-outlet>
+<!--<div class="row">-->
+  <!--<div class="clr-footer col-md-12">-->
+
+  <!--</div>-->
+<!--</div>-->
+

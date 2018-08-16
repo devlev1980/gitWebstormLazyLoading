@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="clr-row">
+
+
+    <form class="clr-form" #signUpForm="ngForm" (ngSubmit)="login(signUpForm.value)" >
+      <div class="card">
+        <section class="form-block">
+          <div class="form-group">
+            <label for="email" class="required">Email</label>
+            <input  type="text" id="email" [(ngModel)]="user.email" name="email">
+          </div>
+        </section>
+        <section class="form-block">
+          <div class="form-group">
+            <label for="password" class="required">Password</label>
+            <input type="password" id="password" [(ngModel)]="user.password" name="password" >
+          </div>
+        </section>
+
+        <div class="clr-form-control text-center">
+          <div class="clr-control-container">
+            <div class="clr-input-wrapper">
+              <button class="btn btn-primary">Login</button>
+            </div>
+          </div>
+        </div>
+        <div class="clr-col-4 buttons" >
+          <button class="btn btn-default" (click)="loginWithGoogle()">Login with google</button>
+          <button class="btn btn-default" (click)="loginWithFacebook()">Login with facebook</button>
+          <button class="btn btn-default" (click)="loginWithGithub()">Login with Github</button>
+
+        </div>
+      </div>
+
+    </form>
+
+
+
+
+
+
+
+    <div class="clr-col-6">
+    </div>
+    <div class="clr-col-6">
+    </div>
+
+
+</div >
+
+</div>
+
+<div *ngIf="">
+
+</div>
+
+
+

@@ -1,0 +1,29 @@
+<!--<p>-->
+  <!--signup works!-->
+<!--</p>-->
+
+<form class="clr-form" #signUpForm="ngForm" (ngSubmit)="onSubmit(signUpForm.value)" >
+  <div class="card">
+  <section class="form-block">
+    <div class="form-group">
+      <label for="email" class="required">Email</label>
+      <input  type="text" id="email" [(ngModel)]="user.email" name="email">
+    </div>
+  </section>
+  <section class="form-block">
+    <div class="form-group">
+      <label for="password" class="required">Password</label>
+      <input type="password" id="password" [(ngModel)]="user.password" name="password" >
+    </div>
+  </section>
+
+  <div class="clr-form-control text-center">
+    <div class="clr-control-container">
+      <div class="clr-input-wrapper">
+      <button class="btn btn-primary">SignUP</button>
+      </div>
+    </div>
+  </div>
+  </div>
+</form>
+

@@ -3,7 +3,7 @@ mat-table, mat-paginator {
   background-color: #002538;
   color: #B8C1C6;
   //width: 80vw;
-  margin-left: 1rem;
+  margin-left: 3rem;
 }
 .row{
   width: 100%;
@@ -75,18 +75,16 @@ bar-rating ::ng-deep{
   }
 }
 .sidenav{
-  min-width: 5rem;
-  height: 84vh;
-  margin-left: -50px;
-  position: relative;
-  border: 1px solid  #002538;
-  border-radius: 10px;
-  text-align: center;
-  -webkit-transition: margin-left .5s ease-out;
-  transition:  margin-left .2s ease-out;
   background-color: #002538;
+  min-width: 5rem;
+  height: 84.1vh;
+  margin-left:-50px;
+   border-right: none;
+  position: relative;
+  transition: margin-left .5s ease-out ;
   &:hover{
-    margin-left: -45px;
+
+    margin-left: -40px;
   }
   //&:after{
   //  content: 'menu';

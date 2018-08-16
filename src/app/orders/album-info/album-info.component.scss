@@ -1,0 +1,58 @@
+
+
+.card {
+  background-color: #002538;
+  border-color: #757e83;
+  box-shadow: none;
+  //width: 15rem;
+
+}
+
+.card-media-text, .card-media-title, .card-header {
+  color: #FAFAFA;
+  border-color: #757e83
+  //margin-left: 1rem;
+}
+
+.card-media-text {
+  //margin-left: 3rem;
+}
+
+.track-number {
+  font-weight: 500;
+}
+
+.duration, .track-duration {
+  //margin-left: 20rem;
+}
+
+.card-block {
+  border-color: #757e83
+}
+
+.card-footer {
+  text-align: right;
+  border-color: #757e83
+}
+
+.btn-primary {
+
+  color: #FAFAFA;
+  background-color: #216869;
+  border: none;
+}
+
+@media (min-width: 576px) {
+  .col-sm-4 {
+    -ms-flex: 0 0 33.33333%;
+    -webkit-box-flex: 0;
+    flex: 0 0 1%;
+    max-width: 20.33333%;
+  }
+}
+svg::ng-deep{
+  display: none;
+
+}
+
+
