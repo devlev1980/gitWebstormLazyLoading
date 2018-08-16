@@ -12,8 +12,9 @@ import {FormControl} from '@angular/forms';
 import {SpotifyAlbumsPerArtist} from '../models/spotify-albums-per-artist';
 import {MatSort} from '@angular/material';
 import {AlbumByArtist} from '../models/album';
-import {ItunesService} from '../services/itunes.service';
-import {ItunesArtist} from '../models/itunes-artist';
+import {ITunesService} from '../services/i-tunes.service';
+import {ITunesArtist} from '../models/i-tunes-artist';
+import {ITunesAlbum} from '../models/i-tunes-album';
 
 
 @Component({
@@ -23,8 +24,11 @@ import {ItunesArtist} from '../models/itunes-artist';
 })
 export class OrdersListComponent implements OnInit {
   albums = {} as any;
-  spotifyArtists = {}as  ItunesArtist;
+  spotifyArtists = {}as  SpotifyArtist;
+  iTunesArtists = {}as ITunesArtist;
+  iTunesAlbumByArtist = {} as ITunesAlbum;
   spotifyAlbumsPerArtist = {} as SpotifyAlbumsPerArtist;
+
   artist: string;
   displayedColumns = ['index', 'artwork', 'album name', 'release date', 'total tracks', 'rating'];
   dataSource;
@@ -55,72 +59,57 @@ export class OrdersListComponent implements OnInit {
               private router: Router,
               private albumsService: AlbumsDataService,
               private spotifyService: SpotifyService,
-              private itunesService: ItunesService) {
+              private itunesService: ITunesService) {
 
 
   }
 
 
   ngOnInit() {
-    // const artistName = JSON.parse(this.lsService.get('artist'));
-    // this.dataSource = new MatTableDataSource(artistName);
-    // this.dataSource.paginator = this.paginator;
-    // this.getSpotifyArtists(artistName);
-    // console.log(this.myFavoriteAlbum);
+    const artistName = JSON.parse(this.lsService.get('artist'));
+    this.setDataSource(artistName);
+    this.getSpotifyArtists(artistName);
   }
 
   getSpotifyArtists(artistName: string) {
-    // this.spotifyService.searchArtist(artistName).subscribe(artist => {
-    //   // this.lsService.set('artist', JSON.stringify(artist));
-    //   this.spotifyArtists.artists = artist.artists;
-    //   this.dataSource.paginator = this.paginator;
-    //   this.dataSource.sort = this.sort;
-    //   // console.log(this.dataSource);
-    //
-    //
-    // });
-    this.itunesService.searchArtist(artistName).subscribe(artist => {
-      console.log(artist.results);
-      this.spotifyArtists.results = artist.results;
+
+    this.itunesService.searchArtist(artistName).subscribe(artists => {
+      this.iTunesArtists.results = artists.results;
+
       this.dataSource.paginator = this.paginator;
-      //   this.dataSource.sort = this.sort;
-      // this.dataSource.paginator = this.paginator;
-      // this.dataSource.sort = this.sort;
+        this.dataSource.sort = this.sort;
+
     });
 
 
   }
 
-  getArtistAlbums(id, album) {
-    this.spotifyService.searchAlbums(id).subscribe(albums => {
-      this.spotifyAlbumsPerArtist = albums;
+  getArtistAlbums(artistId) {
 
-
-      this.dataSource = new MatTableDataSource(this.spotifyAlbumsPerArtist.items);
-
-      this.lsService.set('artist', JSON.stringify(this.spotifyAlbumsPerArtist.items));
-
-      this.length = this.albums.length;
+    this.itunesService.searchAlbumByArtist(artistId).subscribe(albums => {
+      console.log(albums);
+      this.iTunesAlbumByArtist.results = albums.results;
+      this.dataSource = new MatTableDataSource(this.iTunesAlbumByArtist.results.slice(1));
+      this.lsService.set('artist', JSON.stringify(this.iTunesAlbumByArtist.results.slice(1)));
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-
     });
+
+
   }
 
 
   onAlbumDetails(id: string) {
+
     this.router.navigate([`/orders/albumInfo/${id}`]);
+
 
   }
 
   onRateChange(album) {
     this.myFavoriteAlbum.push(album);
     this.lsService.set('favoriteAlbums', JSON.stringify(this.myFavoriteAlbum));
-
-
-    // console.log(album);
     const albumInLS = JSON.parse(this.lsService.get('artist'));
-
     let albumId = albumInLS.findIndex(item => item.id === album.id);
     if (albumId >= 0) {
       albumInLS.splice(albumId, 1);
@@ -128,16 +117,13 @@ export class OrdersListComponent implements OnInit {
       this.lsService.set('artist', JSON.stringify(albumInLS));
     }
 
-    // console.log(albumInLS);
-
-
   }
-
   onFavoriteAlbum() {
     this.myFavoriteAlbum = JSON.parse(this.lsService.get('favoriteAlbums'));
-
-    console.log(this.myFavoriteAlbum);
-    this.dataSource = new MatTableDataSource(this.myFavoriteAlbum);
+    this.setDataSource(this.myFavoriteAlbum);
+  }
+  setDataSource(data){
+    this.dataSource = new MatTableDataSource(data);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }

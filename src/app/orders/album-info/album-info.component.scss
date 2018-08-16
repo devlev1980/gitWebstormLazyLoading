@@ -14,6 +14,7 @@
   //margin-left: 1rem;
 }
 
+
 .card-media-text {
   //margin-left: 3rem;
 }
@@ -27,7 +28,8 @@
 }
 
 .card-block {
-  border-color: #757e83
+  border-color: #757e83;
+
 }
 
 .card-footer {
@@ -53,6 +55,28 @@
 svg::ng-deep{
   display: none;
 
+}
+ol>li{
+  width:25rem;
+  border-bottom: 1px dashed #6c6c6c;
+  margin-bottom: .5rem;
+  color: #9CA9B0;
+  &:hover{
+    color: #fff;
+    cursor: pointer;
+  }
+
+}
+.card-media-block .card-media-image {
+  display: inline-block;
+  -ms-flex: 0 0 auto;
+  -webkit-box-flex: 0;
+  flex: 0 0 auto;
+  height: 16.5rem;
+  width: 10.5rem;
+  max-height: 5.5rem;
+  max-width: 5.5rem;
+  margin-bottom: 2rem;
 }
 
 

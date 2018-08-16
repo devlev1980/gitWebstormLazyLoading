@@ -1,22 +1,30 @@
 <div  class="row col-md-12" >
   <div class="col-lg-6 offset-lg-3" >
     <div class="card " >
-      <div class="card-header" >
-        <!--<img src="{{item.images|json}}" class="card-media-image">-->
-
+      <div class="card-header text-center" >
+        {{actualTracks[0].collectionName}}
       </div>
       <div class="card-block" >
         <div class="card-media-block" >
-          <iframe [src]="sanitizer.bypassSecurityTrustResourceUrl(iFrameFullLink)" width="100%" height="400"  frameborder="0" allowtransparency="true" allow="encrypted-media"  style="margin-left: 0rem;"></iframe>
+          <!--<iframe [src]="sanitizer.bypassSecurityTrustResourceUrl(iFrameFullLink)" width="100%" height="400"  frameborder="0" allowtransparency="true" allow="encrypted-media"  style="margin-left: 0rem;"></iframe>-->
           <!--<div class="card-media-description col-md-3 ">-->
 
           <!--</div>-->
-          <!--<div class="card-media-description">-->
-          <!--<span class="card-media-text mt-1" >-->
+          <div class="card-media-description">
+            <img src="{{actualTracks[0]?.artworkUrl100}}" class="card-media-image">
 
+            <!--<span class="card-media-text mt-1" >-->
+            <!--<ul *ngFor="let track of actualTracks">-->
+              <!--<li>{{track.trackName}}</li>-->
+            <!--</ul>-->
+
+            <ol class="list">
+              <li  *ngFor="let track of actualTracks;let i=index"> <mat-divider></mat-divider>{{track.trackName}}</li>
+
+            </ol>
 
                         <!--</span></div>-->
-        <!--</div>-->
+        </div>
         <!--<div class="card-text">-->
 
         <!--</div>-->

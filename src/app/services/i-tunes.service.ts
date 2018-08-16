@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from '../../../node_modules/rxjs';
 import {ITunesArtist} from '../models/i-tunes-artist';
 import {ITunesAlbum} from '../models/i-tunes-album';
+import {ITunesTrackByAlbum} from '../models/i-tunes-track-by-album';
 
 @Injectable()
 export class ITunesService {
@@ -22,6 +23,11 @@ export class ITunesService {
   searchAlbumByArtist(artistId: number): Observable<ITunesAlbum> {
     let iTunesURL = `${this.API.LOOKUP}entity=album&id=${artistId}`;
     return this._http.get<ITunesAlbum>(iTunesURL);
+  }
+
+  getTracksByAlbum(albumId): Observable<ITunesTrackByAlbum> {
+    let ITunesURL = `${this.API.LOOKUP}entity=song&id=${albumId}`;
+    return this._http.get<ITunesTrackByAlbum>(ITunesURL);
   }
 
 }

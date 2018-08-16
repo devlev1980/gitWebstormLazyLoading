@@ -23,6 +23,8 @@
         "../node_modules/@clr/ui/clr-ui.min.css",
         "../node_modules/ngx-toastr/toastr.css",
         "../node_modules/billboard.js/dist/billboard.min.css",
+
+
         "styles.css"
       ],
       "scripts": [
