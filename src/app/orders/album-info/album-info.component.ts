@@ -28,9 +28,11 @@ export class AlbumInfoComponent implements OnInit {
   actualTracks = [];
   iframeUrl = 'https://open.spotify.com/embed';
   iFrameFullLink = 'https://open.spotify.com/embed?uri=spotify:album:${{id}}';
-  player;
   artWork;
   id;
+  @ViewChild('player') playerRef;
+  player: any;
+  isPlaying: boolean = false;
   @ViewChildren(PerfectScrollbarDirective) scrollBars: QueryList<PerfectScrollbarDirective>;
 
   constructor(private albumsService: AlbumsDataService,
@@ -44,7 +46,7 @@ export class AlbumInfoComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.player = this.playerRef.nativeElement;
     //
     // const albumInLS = JSON.parse(this.lsService.get('artist'));
 
@@ -71,5 +73,21 @@ export class AlbumInfoComponent implements OnInit {
   onBack() {
     this.router.navigate([`/orders/albumInfo`]);
   }
+  playerEnded() {
+    // handle event
+  }
+  playTrack() {
+    this.isPlaying = true;
+  }
+  pauseTrack() {
+    this.isPlaying = false;
+  }
+  //
+  // playSound() {
+  //   let audio = new Audio();
+  //   audio.src = 'https://audio-ssl.itunes.apple.com/apple-assets-us-std-000001/Music7/v4/9f/29/87/9f298785-2ee5-310a-4ed8-01fc3ad23f26/mzaf_2165386716508229288.plus.aac.p.m4a';
+  //   audio.load();
+  //   audio.play();
+  // }
 
 }
