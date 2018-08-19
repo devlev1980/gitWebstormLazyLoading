@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {LastFmService} from '../services/last-fm.service';
 import {DomSanitizer} from '@angular/platform-browser';
 import {MatPaginator, MatTableDataSource} from '@angular/material';
@@ -40,8 +40,11 @@ export class OrdersListComponent implements OnInit {
   pageSizeOptions: number[] = [10];
   rate: number;
   albumWithRaiting: AlbumByArtist;
-  myFavoriteAlbum = [];
+  myFavoriteAlbum: AlbumByArtist[] = [];
+  myFavoriteSongs = [];
   wasClicked = false;
+  albumsTable: boolean;
+ songsTable: boolean;
 
   get starRating() {
     return this.rate;
@@ -69,15 +72,16 @@ export class OrdersListComponent implements OnInit {
     const artistName = JSON.parse(this.lsService.get('artist'));
     this.setDataSource(artistName);
     this.getSpotifyArtists(artistName);
+    this.albumsTable = true;
+
   }
 
   getSpotifyArtists(artistName: string) {
 
     this.itunesService.searchArtist(artistName).subscribe(artists => {
       this.iTunesArtists.results = artists.results;
-
       this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
+      this.dataSource.sort = this.sort;
 
     });
 
@@ -109,20 +113,31 @@ export class OrdersListComponent implements OnInit {
   onRateChange(album) {
     this.myFavoriteAlbum.push(album);
     this.lsService.set('favoriteAlbums', JSON.stringify(this.myFavoriteAlbum));
-    const albumInLS = JSON.parse(this.lsService.get('artist'));
-    let albumId = albumInLS.findIndex(item => item.id === album.id);
-    if (albumId >= 0) {
-      albumInLS.splice(albumId, 1);
-      albumInLS.unshift(album);
-      this.lsService.set('artist', JSON.stringify(albumInLS));
-    }
+    // const albumInLS = JSON.parse(this.lsService.get('artist'));
+    // let albumId = albumInLS.findIndex(item => item.id === album.id);
+    // if (albumId >= 0) {
+    //   albumInLS.splice(albumId, 1);
+    //   albumInLS.unshift(album);
+    //   this.lsService.set('artist', JSON.stringify(albumInLS));
+    // }
 
   }
+
   onFavoriteAlbum() {
     this.myFavoriteAlbum = JSON.parse(this.lsService.get('favoriteAlbums'));
     this.setDataSource(this.myFavoriteAlbum);
   }
-  setDataSource(data){
+
+  onFavoriteSongs() {
+    this.albumsTable = false;
+  }
+
+  // onFavoriteSongs() {
+  //   this.myFavoriteSongs = JSON.parse(this.lsService.get('favoriteSongs'));
+  //   console.log(this.myFavoriteSongs);
+  //   this.setDataSource(this.myFavoriteSongs);
+  // }
+  setDataSource(data) {
     this.dataSource = new MatTableDataSource(data);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;

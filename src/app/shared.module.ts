@@ -7,6 +7,7 @@ import {CustomerService} from './services/customer.service';
 import {ClarityModule} from '@clr/angular';
 import {FirebaseAuthService} from './services/firebase-auth.service';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import {CovalentDataTableModule} from '@covalent/core';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
     FormsModule,
     ReactiveFormsModule,
     ClarityModule,
-    PerfectScrollbarModule
+    PerfectScrollbarModule,
+
 
 
 
@@ -25,7 +27,8 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
     FormsModule,
     ReactiveFormsModule,
     ClarityModule,
-    PerfectScrollbarModule
+    PerfectScrollbarModule,
+
 
 
   ],

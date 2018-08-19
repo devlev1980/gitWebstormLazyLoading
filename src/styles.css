@@ -21,4 +21,7 @@ body {
 span .mat-option-text {
   border: 1px solid red !important;
 }
+.mat-expansion-panel{
+  background: #022537;
+}
 

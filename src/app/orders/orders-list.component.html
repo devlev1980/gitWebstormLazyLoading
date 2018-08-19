@@ -25,7 +25,7 @@
           <a class="nav-link favorite"  (click)="onFavoriteAlbum()" >
              <span class="spotify-album" matTooltip="Favorite Album"></span>
           </a>
-          <a class="nav-link favorite"  (click)="onFavoriteAlbum()" >
+          <a class="nav-link favorite"  (click)="onFavoriteSongs()" >
             <span class="spotify-Song" matTooltip="Favorite Song"></span>
           </a>
         </section>
@@ -38,7 +38,7 @@
       </nav>
   </div>
 
-<div class="col-md-11">
+<div class="col-md-11"  *ngIf="albumsTable;else favoriteSongsTable">
   <mat-table #table [dataSource]="dataSource" *ngIf="dataSource;else spinner" matSort class="mat-elevation-z8">
   <ng-container matColumnDef="index">
   <mat-header-cell *matHeaderCellDef mat-sort-header> No</mat-header-cell>
@@ -70,7 +70,7 @@
 
   <ng-container matColumnDef="rating">
   <mat-header-cell *matHeaderCellDef mat-sort-header> Rating</mat-header-cell>
-  <mat-cell *matCellDef="let album" (click)="onAlbumDetails(album.collectionId)">
+  <mat-cell *matCellDef="let album" >
   <bar-rating  [max]="5" [theme]="'stars'" [(rate)]="album.rate"  id="rate" (rateChange)="onRateChange(album)"></bar-rating>
   </mat-cell>
   </ng-container>
@@ -82,6 +82,7 @@
 
   </mat-table>
 
+
   <mat-paginator [length]="length"
                  [hidden]="!dataSource"
                  [pageSize]="pageSize"
@@ -89,7 +90,13 @@
                  (page)="pageEvent = $event">
   </mat-paginator>
 
-<!--</div>-->
+  <div #favoriteSongsTable>
+    <app-album-info ></app-album-info>
+  </div>
+
+
+
+  <!--</div>-->
 
 
 
