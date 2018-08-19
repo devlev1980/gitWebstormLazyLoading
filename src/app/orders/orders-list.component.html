@@ -38,7 +38,7 @@
       </nav>
   </div>
 
-<div class="col-md-11"  *ngIf="albumsTable;else favoriteSongsTable">
+<div class="col-md-11" *ngIf="albumsTable" >
   <mat-table #table [dataSource]="dataSource" *ngIf="dataSource;else spinner" matSort class="mat-elevation-z8">
   <ng-container matColumnDef="index">
   <mat-header-cell *matHeaderCellDef mat-sort-header> No</mat-header-cell>
@@ -50,19 +50,18 @@
   <mat-cell *matCellDef="let album" (click)="onAlbumDetails(album.collectionId)"><img src="{{album.artworkUrl100}}"
   alt="artwork"></mat-cell>
   </ng-container>
-  <!--artist-->
+
   <ng-container matColumnDef="album name">
   <mat-header-cell *matHeaderCellDef mat-sort-header>Album Name</mat-header-cell>
   <mat-cell *matCellDef="let album" (click)="onAlbumDetails(album.collectionId)">{{album.collectionName}}</mat-cell>
   </ng-container>
 
-   name Column
+
   <ng-container matColumnDef="release date">
   <mat-header-cell *matHeaderCellDef mat-sort-header> Release Date</mat-header-cell>
   <mat-cell *matCellDef="let album" (click)="onAlbumDetails(album.collectionId)"> {{album.releaseDate}}</mat-cell>
   </ng-container>
 
-  <!-- playcount Column -->
   <ng-container matColumnDef="total tracks">
   <mat-header-cell *matHeaderCellDef mat-sort-header> Total Tracks</mat-header-cell>
   <mat-cell *matCellDef="let album" (click)="onAlbumDetails(album.collectionId)"> {{album.trackCount}}</mat-cell>
@@ -75,10 +74,8 @@
   </mat-cell>
   </ng-container>
 
-
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-
 
   </mat-table>
 
@@ -90,40 +87,11 @@
                  (page)="pageEvent = $event">
   </mat-paginator>
 
-  <div #favoriteSongsTable>
-    <app-album-info ></app-album-info>
-  </div>
-
-
-
-  <!--</div>-->
-
-
-
-
-<!--</div>-->
-
-
 <ng-template #spinner>
 
   <mat-spinner [diameter]="40" color="primary"></mat-spinner>
 </ng-template>
-<!--</div>-->
 
-<!--<nav class="sidenav col-md-1" >-->
-<!--<section class="sidenav-content">-->
-<!--<section class="nav-group">-->
-<!--<a class="nav-link" >-->
-<!--My Favotite Albums-->
-<!--</a>-->
-<!--</section>-->
-<!--<section class="nav-group">-->
-<!--</section>-->
-<!--<mat-divider></mat-divider>-->
-<!--</section>-->
-<!--<div class="spacer"></div>-->
-
-<!--</nav>-->
 
 
 

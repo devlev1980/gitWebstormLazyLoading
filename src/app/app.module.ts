@@ -17,6 +17,7 @@ import {AlbumsDataService} from './services/albums-data.service';
 import {AlbumInfoService} from './services/album-info.service';
 import SpotifyService from 'angular2-spotify';
 import {BarRatingModule} from 'ngx-bar-rating';
+import {AngularFirestoreModule} from 'angularfire2/firestore';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import {BarRatingModule} from 'ngx-bar-rating';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
-    BarRatingModule
+    BarRatingModule,
+    AngularFireDatabaseModule
   ],
   providers: [AlbumsDataService, AlbumInfoService],
   bootstrap: [AppComponent]

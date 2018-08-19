@@ -15,6 +15,8 @@ import {AlbumByArtist} from '../models/album';
 import {ITunesService} from '../services/i-tunes.service';
 import {ITunesArtist} from '../models/i-tunes-artist';
 import {ITunesAlbum} from '../models/i-tunes-album';
+// import {FirebaseListObservable, FirebaseObjectObservable, AngularFireDatabase} from  'angularfire2/database';
+
 
 
 @Component({
@@ -31,6 +33,7 @@ export class OrdersListComponent implements OnInit {
 
   artist: string;
   displayedColumns = ['index', 'artwork', 'album name', 'release date', 'total tracks', 'rating'];
+  displayedColumnsSongsTable = ['index'];
   dataSource;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -44,7 +47,7 @@ export class OrdersListComponent implements OnInit {
   myFavoriteSongs = [];
   wasClicked = false;
   albumsTable: boolean;
- songsTable: boolean;
+ @ViewChild('songsTable') songsTable: ElementRef;
 
   get starRating() {
     return this.rate;
@@ -73,6 +76,7 @@ export class OrdersListComponent implements OnInit {
     this.setDataSource(artistName);
     this.getSpotifyArtists(artistName);
     this.albumsTable = true;
+    console.log(this.songsTable.nativeElement)
 
   }
 
@@ -130,6 +134,11 @@ export class OrdersListComponent implements OnInit {
 
   onFavoriteSongs() {
     this.albumsTable = false;
+    const songsTableFavorites = JSON.parse(this.lsService.get('favoriteSongs'));
+    // this.dataSource = new MatTableDataSource(songsTableFavorites);
+    this.setDataSource(songsTableFavorites);
+    console.log(songsTableFavorites);
+    // this.dataSource = new MatTableDataSource(songsTableFavorites)
   }
 
   // onFavoriteSongs() {
