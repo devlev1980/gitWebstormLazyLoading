@@ -77,7 +77,7 @@ bar-rating ::ng-deep{
 .sidenav{
   background-color: #002538;
   min-width: 5rem;
-  height: 84.1vh;
+  height:72vh;;
   margin-left:-50px;
    border-right: none;
   position: relative;
@@ -117,9 +117,14 @@ bar-rating ::ng-deep{
 
   //border: 1px solid #757e83
 }
-.spotify-album,.spotify-Song{
+.spotify-album:hover,.spotify-Song:hover{
   color: #b483ff;
-  font-size: 24px;
+  font-size: 30px;
+  transition: font-size 1s ease-out;
+  //&:{
+  //  transform: rotate(360deg);
+  //}
+
 
 }
 
