@@ -76,7 +76,6 @@ export class OrdersListComponent implements OnInit {
     this.setDataSource(artistName);
     this.getSpotifyArtists(artistName);
     this.albumsTable = true;
-    console.log(this.songsTable.nativeElement)
 
   }
 

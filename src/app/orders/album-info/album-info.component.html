@@ -1,104 +1,105 @@
 <!--<div class="row col-md-12">-->
-  <!--<div class="col-lg-6 offset-lg-3">-->
-    <!--<div class="card ">-->
-      <!--<div class="card-header text-center">-->
-        <!--{{actualTracks[0]?.collectionName}}-->
-      <!--</div>-->
-      <!--<div class="card-block">-->
-        <!--<div class="card-media-block">-->
+<!--<div class="col-lg-6 offset-lg-3">-->
+<!--<div class="card ">-->
+<!--<div class="card-header text-center">-->
+<!--{{actualTracks[0]?.collectionName}}-->
+<!--</div>-->
+<!--<div class="card-block">-->
+<!--<div class="card-media-block">-->
 
-          <!--<div class="card-media-description">-->
-            <!--<img src="{{actualTracks[0]?.artworkUrl100}}" class="card-media-image">-->
+<!--<div class="card-media-description">-->
+<!--<img src="{{actualTracks[0]?.artworkUrl100}}" class="card-media-image">-->
 
-            <!--<ol class="list">-->
-              <!--<li *ngFor="let track of actualTracks;let i=index">-->
-                <!--{{track.trackName}}-->
-              <!--<span class="col-md-2 offset-md-7">  <bar-rating  [max]="5" [theme]="'stars'" [(rate)]="track.rate"  id="rate" (rateChange)="onRateChange(track)"></bar-rating></span>-->
-                <!--<div class="col-md-6 offset-md-10">-->
+<!--<ol class="list">-->
+<!--<li *ngFor="let track of actualTracks;let i=index">-->
+<!--{{track.trackName}}-->
+<!--<span class="col-md-2 offset-md-7">  <bar-rating  [max]="5" [theme]="'stars'" [(rate)]="track.rate"  id="rate" (rateChange)="onRateChange(track)"></bar-rating></span>-->
+<!--<div class="col-md-6 offset-md-10">-->
 
-                  <!--<a href="{{track.trackViewUrl}}" target="_blank" class="btn btn-primary btn-sm btn-icon" matTooltip="Preview on iTunes"><i class="fa fa-play" ></i></a>-->
-                  <!--&lt;!&ndash;<button class="btn btn-secondary btn-sm btn-icon"><i class="fa fa-pause"></i></button>&ndash;&gt;-->
-                <!--</div>-->
+<!--<a href="{{track.trackViewUrl}}" target="_blank" class="btn btn-primary btn-sm btn-icon" matTooltip="Preview on iTunes"><i class="fa fa-play" ></i></a>-->
+<!--&lt;!&ndash;<button class="btn btn-secondary btn-sm btn-icon"><i class="fa fa-pause"></i></button>&ndash;&gt;-->
+<!--</div>-->
 
-              <!--</li>-->
+<!--</li>-->
 
-            <!--</ol>-->
+<!--</ol>-->
 
-            <!--<div>-->
+<!--<div>-->
 
-            <!--</div>-->
-          <!--</div>-->
+<!--</div>-->
+<!--</div>-->
 
-        <!--</div>-->
-        <!--<div class="card-footer">-->
-          <!--<button class="btn btn-sm btn-primary" (click)="onBack()">Back</button>-->
-        <!--</div>-->
-      <!--</div>-->
+<!--</div>-->
+<!--<div class="card-footer">-->
+<!--<button class="btn btn-sm btn-primary" (click)="onBack()">Back</button>-->
+<!--</div>-->
+<!--</div>-->
 
-    <!--</div>-->
+<!--</div>-->
 
-    <!--<app-more-data class="col-md-8" style="max-height: 600px"></app-more-data>-->
+<!--<app-more-data class="col-md-8" style="max-height: 600px"></app-more-data>-->
 
-  <!--</div>-->
+<!--</div>-->
 
+<div class="row">
+  <div class="col-md-1">
+    <app-navbar></app-navbar>
+  </div>
 
-  <!-- Position Column -->
-  <mat-table #table [dataSource]="dataSource"  matSort class="mat-elevation-z8">
-    <ng-container matColumnDef="no">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> No</mat-header-cell>
-      <mat-cell *matCellDef="let track;let i=index" >{{i+1}}</mat-cell>
-    </ng-container>
+  <div class="col-md-9">
+    <mat-table #table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+      <ng-container matColumnDef="no">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> No</mat-header-cell>
+        <mat-cell *matCellDef="let track;let i=index">{{i+1}}</mat-cell>
+      </ng-container>
 
-    <ng-container matColumnDef="artwork">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Artwork</mat-header-cell>
-      <mat-cell *matCellDef="let track;let i=index" ><img src="{{track.artworkUrl60}}" alt=""></mat-cell>
-    </ng-container>
+      <ng-container matColumnDef="artwork">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Artwork</mat-header-cell>
+        <mat-cell *matCellDef="let track;let i=index"><img src="{{track.artworkUrl60}}" alt=""></mat-cell>
+      </ng-container>
 
-  <!-- Name Column -->
-    <ng-container matColumnDef="trackName">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Track Name</mat-header-cell>
-      <mat-cell *matCellDef="let track;let i=index" >{{track.trackName}}</mat-cell>
-    </ng-container>
-    
-
-  <!-- Weight Column -->
-    <ng-container matColumnDef="previewUrl">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Preview</mat-header-cell>
-      <mat-cell *matCellDef="let track;let i=index" ><a href="{{track.previewUrl}}" target="_blank" class="btn btn-primary btn-sm btn-icon"><i class="fa fa-play"></i></a></mat-cell>
-    </ng-container>
+      <!-- Name Column -->
+      <ng-container matColumnDef="trackName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Track Name</mat-header-cell>
+        <mat-cell *matCellDef="let track;let i=index">{{track.trackName}}</mat-cell>
+      </ng-container>
 
 
-
-    <ng-container matColumnDef="duration">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Duration</mat-header-cell>
-      <mat-cell *matCellDef="let track;let i=index" >{{track.trackTimeMillis|minuteSeconds}}</mat-cell>
-    </ng-container>
-
-  <!-- Symbol Column -->
-    <ng-container matColumnDef="rating">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Rating</mat-header-cell>
-      <mat-cell *matCellDef="let album" >
-        <bar-rating  [max]="5" [theme]="'stars'" [(rate)]="album.rate"  id="rate" (rateChange)="onRateChange(album)"></bar-rating>
-      </mat-cell>
-    </ng-container>
+      <!-- Weight Column -->
+      <ng-container matColumnDef="previewUrl">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Preview</mat-header-cell>
+        <mat-cell *matCellDef="let track;let i=index"><a href="{{track.previewUrl}}" target="_blank"
+                                                         class="btn btn-primary btn-sm btn-icon"><i
+          class="fa fa-play"></i></a></mat-cell>
+      </ng-container>
 
 
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-  </mat-table>
+      <ng-container matColumnDef="duration">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Duration</mat-header-cell>
+        <mat-cell *matCellDef="let track;let i=index">{{track.trackTimeMillis|minuteSeconds}}</mat-cell>
+      </ng-container>
 
-<mat-paginator [length]="length"
-               [hidden]="!dataSource"
-               [pageSize]="pageSize"
-               [pageSizeOptions]="pageSizeOptions"
-               (page)="pageEvent = $event">
-</mat-paginator>
-
-
-
-
-
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="rating">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Rating</mat-header-cell>
+        <mat-cell *matCellDef="let album">
+          <bar-rating [max]="5" [theme]="'stars'" [(rate)]="album.rate" id="rate"
+                      (rateChange)="onRateChange(album)"></bar-rating>
+        </mat-cell>
+      </ng-container>
 
 
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
 
+    <mat-paginator [length]="length"
+                   [hidden]="!dataSource"
+                   [pageSize]="pageSize"
+                   [pageSizeOptions]="pageSizeOptions"
+                   (page)="pageEvent = $event">
+    </mat-paginator>
+  </div>
+
+</div>
 

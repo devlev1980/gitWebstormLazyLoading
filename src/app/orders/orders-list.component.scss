@@ -10,10 +10,8 @@ mat-table, mat-paginator {
 }
 
 .mat-table {
-  //margin-top: 1rem;
 }
 mat-paginator{
-  //margin-left: 474px;
 }
 
 mat-cell, mat-header-cell, mat-paginator {
@@ -36,8 +34,7 @@ mat-row {
 .mat-paginator::ng-deep {
   display: flex;
   justify-content: space-around;
-  //position: fixed;
-  //bottom:1.7rem;
+
 
   .mat-select-value, .mat-select-arrow {
     color: #B8C1C6;
@@ -74,59 +71,7 @@ bar-rating ::ng-deep{
     width: 11px
   }
 }
-.sidenav{
-  background-color: #002538;
-  min-width: 5rem;
-  height:72vh;;
-  margin-left:-50px;
-   border-right: none;
-  position: relative;
-  transition: margin-left .5s ease-out ;
-  &:hover{
 
-    margin-left: -40px;
-  }
-  //&:after{
-  //  content: 'menu';
-  //  width: 10px;
-  //  height: 10px;
-  //  position: absolute;
-  //  top:-25px;
-  //  font-size: 25px;
-  //  right:-10px;
-  //
-  //}
-
-  .nav-link{
-    color: #758792;
-    margin-bottom: 1rem;
-    margin-left: 0.8rem;
-    text-align: center;
-    &.nav-link.selected{
-      color:#FAFAFA;
-    }
-    &.nav-link.favorite{
-      font-size:18px;
-      &:hover{
-        color: #fff;
-      }
-    }
-  }
-
-
-
-  //border: 1px solid #757e83
-}
-.spotify-album:hover,.spotify-Song:hover{
-  color: #b483ff;
-  font-size: 30px;
-  transition: font-size 1s ease-out;
-  //&:{
-  //  transform: rotate(360deg);
-  //}
-
-
-}
 
 
 

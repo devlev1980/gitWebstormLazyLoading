@@ -1,0 +1,35 @@
+.sidenav {
+  background-color: #002538;
+  min-width: 5rem;
+  height: 72vh;
+  margin-left: -50px;
+  border-right: none;
+  position: relative;
+  transition: margin-left .5s ease-out;
+  &:hover {
+
+    margin-left: -40px;
+  }
+
+
+  .nav-link {
+    color: #758792;
+    margin-bottom: 1rem;
+    margin-left: 0.8rem;
+    text-align: center;
+    &.nav-link.selected {
+      color: #FAFAFA;
+    }
+    &.nav-link.favorite {
+      font-size: 18px;
+      &:hover {
+        color: #fff;
+      }
+    }
+  }
+  .spotify-album:hover, .spotify-Song:hover {
+    color: #b483ff;
+    font-size: 30px;
+    transition: font-size 1s ease-out;
+  }
+}

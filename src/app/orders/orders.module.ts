@@ -16,6 +16,7 @@ import {CovalentDataTableModule} from '@covalent/core';
 import {MomentModule} from 'angular2-moment';
 import { MinuteSecondsPipe } from './album-info/minute-seconds.pipe';
 import { SafePipe } from './album-info/safe.pipe';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   imports: [
@@ -31,7 +32,7 @@ import { SafePipe } from './album-info/safe.pipe';
 
   ],
   providers: [LastFmService, LocalStorageService, SpotifyService, ITunesService],
-  declarations: [OrdersListComponent, AlbumInfoComponent, MoreDataComponent, PlayerComponent, MinuteSecondsPipe, SafePipe]
+  declarations: [OrdersListComponent, AlbumInfoComponent, MoreDataComponent, PlayerComponent, MinuteSecondsPipe, SafePipe, NavbarComponent]
 })
 export class OrdersModule {
 }
