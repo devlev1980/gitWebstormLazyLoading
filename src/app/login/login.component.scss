@@ -3,7 +3,9 @@
   margin: 0 auto;
   padding: 10px 30px;
 
+
 }
+
 .clr-control-label{
   display: table;
 
@@ -25,20 +27,25 @@ button{
   box-shadow: none;
   border: none;
   label{
-    color: #B8C1C6
+    color: #B8C1C6;
+    font-size: 16px;
   }
   button{
    color: #B8C1C6;
     border-color: #B8C1C6;
     span {
-      margin-left: 18px;
+      margin-left: 36px;
     }
   }
   i{
     font-size: 25px;
     margin-left: 0;
   }
+  .btn-google,.btn-github,.btn-facebook{
+    position: relative;
+  }
   .btn-google{
+
     background-color: #CF4332;
   }
   .btn-facebook{
@@ -48,6 +55,14 @@ button{
     background-color: #72c457;
     color: black
   }
+  i{
+    position: absolute;
+    top:4px;
+  }
+  input{
+    color: #FAFAFA;
+  }
 
 }
+
 
