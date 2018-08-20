@@ -20,14 +20,14 @@
         <div class="clr-form-control text-center">
           <div class="clr-control-container">
             <div class="clr-input-wrapper">
-              <button class="btn btn-primary">Login</button>
+              <button class="btn btn-primary btn-block">Login</button>
+              <button class="btn btn-default btn-block btn-google" (click)="loginWithGoogle()"><i class="fa fa-google"></i><span>Login with google</span></button>
+              <button class="btn btn-default btn-block btn-facebook" (click)="loginWithFacebook()"><i class="fa fa-facebook-f"></i><span>Login with facebook</span></button>
+              <button class="btn btn-default btn-block btn-github" (click)="loginWithGithub()"><i class="fa fa-github"></i><span>Login with Github</span></button>
             </div>
           </div>
         </div>
-        <div class="clr-col-4 buttons" >
-          <button class="btn btn-default" (click)="loginWithGoogle()">Login with google</button>
-          <button class="btn btn-default" (click)="loginWithFacebook()">Login with facebook</button>
-          <button class="btn btn-default" (click)="loginWithGithub()">Login with Github</button>
+        <div class="clr-col-8 buttons" >
 
         </div>
       </div>

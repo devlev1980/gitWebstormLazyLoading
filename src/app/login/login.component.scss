@@ -2,11 +2,13 @@
   width: 400px;
   margin: 0 auto;
   padding: 10px 30px;
+
 }
 .clr-control-label{
   display: table;
 
 }
+
 .buttons{
   margin-left: 3rem;
 }
@@ -19,4 +21,33 @@ button{
 .card{
   width: 400px;
   padding: 10px 40px;
+  background-color: #002538;
+  box-shadow: none;
+  border: none;
+  label{
+    color: #B8C1C6
+  }
+  button{
+   color: #B8C1C6;
+    border-color: #B8C1C6;
+    span {
+      margin-left: 18px;
+    }
+  }
+  i{
+    font-size: 25px;
+    margin-left: 0;
+  }
+  .btn-google{
+    background-color: #CF4332;
+  }
+  .btn-facebook{
+    background-color: #3c66c4;
+  }
+  .btn-github{
+    background-color: #72c457;
+    color: black
+  }
+
 }
+
